@@ -1,5 +1,5 @@
 import React from 'react';
-import team from '. team.jpg';
+import team from '../assets/images/team.jpg';
 
 export const AboutCard = ({ title, description, image = team }) => (
   <div className="card">
