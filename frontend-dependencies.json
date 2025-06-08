@@ -1,0 +1,36 @@
+{
+  "version": "0.1.0",
+  "name": "netgenius",
+  "dependencies": {
+    "cra-template": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/cra-template/-/cra-template-1.2.0.tgz",
+      "overridden": false
+    },
+    "react-dom": {
+      "version": "18.3.1",
+      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz",
+      "overridden": false
+    },
+    "react-router-dom": {
+      "version": "7.1.3",
+      "resolved": "https://registry.npmjs.org/react-router-dom/-/react-router-dom-7.1.3.tgz",
+      "overridden": false
+    },
+    "react-scripts": {
+      "version": "5.0.1",
+      "resolved": "https://registry.npmjs.org/react-scripts/-/react-scripts-5.0.1.tgz",
+      "overridden": false
+    },
+    "react": {
+      "version": "18.3.1",
+      "resolved": "https://registry.npmjs.org/react/-/react-18.3.1.tgz",
+      "overridden": false
+    },
+    "web-vitals": {
+      "version": "4.2.4",
+      "resolved": "https://registry.npmjs.org/web-vitals/-/web-vitals-4.2.4.tgz",
+      "overridden": false
+    }
+  }
+}
