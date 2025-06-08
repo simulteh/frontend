@@ -1,32 +1,26 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom'; // Импортируем только Routes и Route
+import { Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { NewsItem } from './components/NewsItem';
 import { AboutCard } from './components/AboutCard';
 import { Footer } from './components/Footer';
 import AuthPage from './pages/AuthPage';
-import './main.css';
+import ProfilePage from './pages/ProfilePage';
+import TeacherProfilePage from './pages/TeacherProfilePage';
+import LabWorksPage from './pages/LabWorksPage';
+import { Weather } from './components/Weather';
+import './style/fonts.css';
+import './style/global.css';
 
-const newsData = [
-  { title: 'Запуск новой версии', description: 'Мы рады сообщить о запуске новой версии нашего приложения...' },
-  { title: 'Обновление безопасности', description: 'В новой версии мы улучшили систему безопасности...' },
-  // ... остальные новости
-];
-
-const aboutCardsData = [
-  { title: 'Наша Миссия', description: 'Мы стремимся предоставить пользователям...' },
-  { title: 'Наше Видение', description: 'Мы видим будущее в том...' },
-  // ... остальные карточки
-];
+// Данные для новостей и карточек "О компании"
+import { newsData, aboutCardsData } from './constants/data';
 
 function App() {
   return (
     <>
-      <Header />
-      
+      <Header /> {/* Шапка сайта */}
       <Routes>
-        {/* Главная страница */}
         <Route
           path="/"
           element={
@@ -69,9 +63,21 @@ function App() {
 
         {/* Страница авторизации */}
         <Route path="/auth" element={<AuthPage />} />
+
+                {/* Страница авторизации */}
+                <Route path="/weather" element={<Weather />} />
+
+        {/* Страница профиля */}
+        <Route path="/profile" element={<ProfilePage />} />
+
+        {/* Страница профиля преподавателя */}
+        <Route path="/teacher-profile" element={<TeacherProfilePage />} />
+
+        {/* Страница с лабораторными работами */}
+        <Route path="/lab-works" element={<LabWorksPage />} />
       </Routes>
 
-      <Footer />
+      <Footer /> {/* Подвал сайта */}
     </>
   );
 }
