@@ -1,0 +1,398 @@
+:root {
+    --primary-color: #4439DE;
+    --primary-light-color: #4864EC;
+    --background-light: #DFDCF8;
+    --white-color: #FFFFFF;
+    --black-color: #000000;
+    --text-color: #333;
+    --border-color: #ccc;
+    --success-color: #28a745;
+    --error-color: #dc3545;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-light);
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--white-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--background-light);
+    border-radius: 8px;
+}
+
+.filter-group,
+.search-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.controls label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.controls select,
+.controls input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    background-color: var(--white-color);
+    transition: border-color 0.3s ease;
+}
+
+.controls select:focus,
+.controls input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-light-color);
+    box-shadow: 0 0 0 3px rgba(72, 100, 236, 0.2);
+}
+
+.tickets-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+table thead {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+table th {
+    font-weight: 600;
+    white-space: nowrap; /* Предотвращает перенос текста в заголовках */
+}
+
+table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+table tbody tr:hover {
+    background-color: var(--background-light);
+}
+
+table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status styling */
+.status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--white-color);
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.status.new { background-color: #dc3545; } /* Red */
+.status.in-progress { background-color: #ffc107; color: var(--black-color);} /* Yellow */
+.status.resolved { background-color: #28a745; } /* Green */
+.status.awaiting-user { background-color: #17a2b8; } /* Blue/Cyan */
+
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button:hover:not(.active) {
+    background-color: var(--primary-light-color);
+    transform: translateY(-2px);
+}
+
+.pagination button.active {
+    background-color: var(--primary-light-color);
+    cursor: default;
+    box-shadow: 0 0 0 3px rgba(72, 100, 236, 0.2);
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: var(--white-color);
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%; /* Could be more or less, depending on screen size */
+    max-width: 800px; /* Max width for larger screens */
+    position: relative;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+    color: var(--black-color);
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--primary-light-color);
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-item strong {
+    color: var(--primary-color);
+    min-width: 120px; /* For alignment */
+}
+
+.detail-item p {
+    flex-grow: 1;
+    background-color: var(--background-light);
+    padding: 10px 15px;
+    border-radius: 5px;
+    white-space: pre-wrap; /* Сохраняет переносы строк */
+    word-wrap: break-word; /* Переносит длинные слова */
+}
+
+.detail-item.full-width {
+    display: block;
+}
+
+.detail-item.full-width p {
+    width: 100%;
+}
+
+.status-select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    background-color: var(--white-color);
+    margin-right: 10px;
+    flex-grow: 1;
+    max-width: 250px;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+.button.primary {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.button.primary:hover {
+    background-color: var(--primary-light-color);
+    transform: translateY(-2px);
+}
+
+.reply-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.reply-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    resize: vertical;
+    margin-bottom: 15px;
+    background-color: var(--white-color);
+}
+
+.chat-history {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+    background-color: var(--background-light);
+    margin-top: 10px;
+}
+
+.chat-history p {
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: var(--white-color);
+    border: 1px solid #e0e0e0;
+}
+
+.chat-history p strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    .controls {
+        flex-direction: column;
+    }
+    .filter-group,
+    .search-group {
+        width: 100%;
+        min-width: unset;
+    }
+    table th, table td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .modal-content {
+        padding: 20px;
+        width: 95%;
+        margin: 10% auto;
+    }
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .detail-item strong {
+        min-width: unset;
+        width: 100%;
+    }
+    .status-select, .button {
+        width: 100%;
+        margin-right: 0;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.8em;
+    }
+    .controls {
+        padding: 15px;
+    }
+    .tickets-section h2 {
+        font-size: 1.5em;
+    }
+    .pagination button {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
