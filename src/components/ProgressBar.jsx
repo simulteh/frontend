@@ -1,8 +1,7 @@
 import React from 'react'
 import '/ProgressBar.css' //Для стилей
 
-let a = 4
-/*function ProgressBar() {
+function ProgressBar() {
     return(
         <div>
             { //Создам скруглённый прямоугольник
@@ -11,7 +10,5 @@ let a = 4
         </div>
     )
 }
-*/
-console.log(4)
 
 export default ProgressBar
