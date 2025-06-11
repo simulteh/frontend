@@ -1,6 +1,7 @@
 import React from 'react'
 import '/ProgressBar.css' //Для стилей
 
+let a = 4
 function ProgressBar() {
     return(
         <div>
@@ -10,5 +11,7 @@ function ProgressBar() {
         </div>
     )
 }
+
+console.log(4)
 
 export default ProgressBar
