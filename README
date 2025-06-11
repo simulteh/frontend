@@ -27,10 +27,7 @@ function CourseCard() {
 }
 
 export default CourseCard;
-
-
 Стили (CourseCard.module.css)
-
 .card {
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -66,3 +63,6 @@ export default CourseCard;
 .button:hover {
   background-color: #004a99;
 }
+Мы реализовали базовый функционал и стилизацию компонента CourseCard.
+Дальше планируем добавить динамическую загрузку данных и улучшить взаимодействие с пользователем.
+Продолжаем работу над проектом!
