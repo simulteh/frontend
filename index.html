@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора поддержки</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключение шрифта Montserrat с Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Панель администратора поддержки</h1>
+        </header>
+
+        <div class="controls">
+            <div class="filter-group">
+                <label for="statusFilter">Фильтр по статусу:</label>
+                <select id="statusFilter">
+                    <option value="all">Все</option>
+                    <option value="Новое">Новое</option>
+                    <option value="В работе">В работе</option>
+                    <option value="Решено">Решено</option>
+                    <option value="Ожидает ответа пользователя">Ожидает ответа пользователя</option>
+                </select>
+            </div>
+            <div class="search-group">
+                <label for="searchQuery">Поиск:</label>
+                <input type="text" id="searchQuery" placeholder="Поиск по имени, email, теме...">
+            </div>
+        </div>
+
+        <div class="tickets-section">
+            <h2>Список обращений</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Пользователь</th>
+                            <th>Email</th>
+                            <th>Тема</th>
+                            <th>Дата</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ticketsTableBody">
+                        <!-- Здесь будут динамически загружаться обращения -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="pagination" class="pagination">
+                <!-- Здесь будут кнопки пагинации -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для детального просмотра обращения -->
+    <div id="ticketDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Детали обращения <span id="detailId"></span></h2>
+            <div class="detail-item">
+                <strong>Пользователь:</strong> <span id="detailUser"></span> (<span id="detailEmail"></span>)
+            </div>
+            <div class="detail-item">
+                <strong>Тема:</strong> <span id="detailSubject"></span>
+            </div>
+            <div class="detail-item">
+                <strong>Дата:</strong> <span id="detailDate"></span>
+            </div>
+            <div class="detail-item">
+                <strong>Статус:</strong>
+                <select id="detailStatus" class="status-select">
+                    <option value="Новое">Новое</option>
+                    <option value="В работе">В работе</option>
+                    <option value="Решено">Решено</option>
+                    <option value="Ожидает ответа пользователя">Ожидает ответа пользователя</option>
+                </select>
+                <button id="updateStatusButton" class="button primary">Обновить статус</button>
+            </div>
+            <div class="detail-item full-width">
+                <strong>Сообщение:</strong>
+                <p id="detailMessage"></p>
+            </div>
+            <div class="detail-item full-width">
+                <strong>История переписки:</strong>
+                <div id="detailHistory" class="chat-history"></div>
+            </div>
+            <div class="reply-section full-width">
+                <h3>Ответить пользователю:</h3>
+                <textarea id="replyMessage" placeholder="Напишите ваш ответ здесь..."></textarea>
+                <button id="sendReplyButton" class="button primary">Отправить ответ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
