@@ -1,88 +1,45 @@
 .card {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 180px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  cursor: pointer;
   display: flex;
-  align-items: flex-start;
-  border-radius: 12px;
-  padding: 24px;
-  max-width: 900px;
-  font-family: Arial, sans-serif;
-  gap: 24px;
-
-  background-color: #4439DE; /* сплошной фон */
-  color: #FFFFFF; /* все буквы белые */
-  box-shadow: 0 4px 12px rgba(68, 57, 222, 0.6);
+  align-items: center;
+  padding: 12px;
+  transition: box-shadow 0.3s ease;
+  user-select: none;
+  z-index: 1100;
 }
 
-.textBlock {
-  flex: 1;
-}
-
-.imageBlock {
-  flex: 0 0 320px;
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
 }
 
 .image {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
-  box-shadow: 0 4px 12px rgba(72, 100, 236, 0.7); /* легкий акцент #4864EC */
+  border-radius: 6px;
+  margin-right: 12px;
+  flex-shrink: 0;
 }
 
-/* Заголовки */
-
-.mainTitle {
-  font-size: 32px;
-  margin: 0 0 8px 0;
-  font-weight: bold;
-  color: #FFFFFF;
-  text-shadow: 0 1px 3px rgba(72, 100, 236, 0.8); /* тень с #4864EC */
+.info {
+  flex-grow: 1;
 }
 
-.courseTitle {
-  font-size: 24px;
+.title {
   margin: 0 0 6px 0;
-  font-weight: 600;
-  color: #FFFFFF;
-  text-shadow: 0 1px 2px rgba(223, 220, 248, 0.8); /* тень с #DFDCF8 */
+  font-size: 1.1rem;
+  color: #333;
 }
 
-.previewTitle {
-  font-size: 18px;
-  margin: 0 0 12px 0;
-  font-weight: 500;
-  color: #DFDCF8; /* светлый акцент */
-  text-shadow: 0 1px 2px rgba(68, 57, 222, 0.6);
-}
-
-.description {
-  font-size: 16px;
-  margin-bottom: 12px;
-  line-height: 1.5;
-  color: #FFFFFF;
-}
-
-p strong {
-  font-weight: 700;
-  color: #DFDCF8; /* выделение акцентом */
-}
-
-/* Кнопка */
-
-.button {
-  display: inline-block;
-  padding: 12px 22px;
-  background-color: #4439DE; /* фон кнопки как у карточки */
-  color: #FFFFFF; /* белый текст */
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 700;
-  box-shadow: 0 3px 8px rgba(72, 100, 236, 0.7); /* тень с #4864EC */
-  transition: background-color 0.3s, box-shadow 0.3s;
-  margin-top: 16px;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #2f27b5; /* чуть темнее при наведении */
-  box-shadow: 0 5px 15px rgba(72, 100, 236, 0.9);
+.duration {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
 }
