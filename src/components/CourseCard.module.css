@@ -1,77 +1,88 @@
 .card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  max-width: 350px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  background-color: #fff;
   display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.3s ease;
+  align-items: flex-start;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 900px;
+  font-family: Arial, sans-serif;
+  gap: 24px;
+
+  background-color: #4439DE; /* сплошной фон */
+  color: #FFFFFF; /* все буквы белые */
+  box-shadow: 0 4px 12px rgba(68, 57, 222, 0.6);
 }
 
-.card:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+.textBlock {
+  flex: 1;
+}
+
+.imageBlock {
+  flex: 0 0 320px;
 }
 
 .image {
   width: 100%;
-  height: 180px;
+  height: auto;
+  border-radius: 12px;
   object-fit: cover;
+  box-shadow: 0 4px 12px rgba(72, 100, 236, 0.7); /* легкий акцент #4864EC */
 }
 
-.content {
-  padding: 16px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
+/* Заголовки */
 
-.title {
-  font-size: 1.25rem;
+.mainTitle {
+  font-size: 32px;
+  margin: 0 0 8px 0;
   font-weight: bold;
-  margin-bottom: 8px;
-  color: #333;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(72, 100, 236, 0.8); /* тень с #4864EC */
+}
+
+.courseTitle {
+  font-size: 24px;
+  margin: 0 0 6px 0;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(223, 220, 248, 0.8); /* тень с #DFDCF8 */
+}
+
+.previewTitle {
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  font-weight: 500;
+  color: #DFDCF8; /* светлый акцент */
+  text-shadow: 0 1px 2px rgba(68, 57, 222, 0.6);
 }
 
 .description {
-  font-size: 0.9rem;
-  color: #555;
+  font-size: 16px;
   margin-bottom: 12px;
-  flex-grow: 1;
+  line-height: 1.5;
+  color: #FFFFFF;
 }
 
-.info {
-  font-size: 0.85rem;
-  color: #777;
-  margin-bottom: 4px;
+p strong {
+  font-weight: 700;
+  color: #DFDCF8; /* выделение акцентом */
 }
+
+/* Кнопка */
 
 .button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 14px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  align-self: flex-start;
+  display: inline-block;
+  padding: 12px 22px;
+  background-color: #4439DE; /* фон кнопки как у карточки */
+  color: #FFFFFF; /* белый текст */
+  border-radius: 8px;
   text-decoration: none;
-  text-align: center;
-  user-select: none;
+  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(72, 100, 236, 0.7); /* тень с #4864EC */
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin-top: 16px;
+  cursor: pointer;
 }
 
 .button:hover {
-  background-color: #0056b3;
-}
-
-@media (max-width: 480px) {
-  .card {
-    max-width: 100%;
-  }
-  .image {
-    height: 140px;
-  }
+  background-color: #2f27b5; /* чуть темнее при наведении */
+  box-shadow: 0 5px 15px rgba(72, 100, 236, 0.9);
 }
