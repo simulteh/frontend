@@ -70,6 +70,9 @@ function App() {
         {/* Страница профиля */}
         <Route path="/profile" element={<ProfilePage />} />
 
+        {/* Страница профиля */}
+        <Route path="/courses" element={<Courses />} />
+
         {/* Страница профиля преподавателя */}
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
 
