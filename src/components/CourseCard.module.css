@@ -1,35 +1,77 @@
 .card {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 18px;
-  max-width: 330px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
-  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 350px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.content {
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
-  font-size: 1.6rem;
-  margin-bottom: 14px;
-  color: #2c2c2c;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
 }
 
 .description {
-  font-size: 1.05rem;
-  margin-bottom: 18px;
+  font-size: 0.9rem;
   color: #555;
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.info {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 4px;
 }
 
 .button {
-  background-color: #0069d9;
+  background-color: #007bff;
+  color: white;
   border: none;
-  padding: 12px 18px;
-  color: #fff;
-  border-radius: 5px;
+  border-radius: 4px;
+  padding: 10px 14px;
   cursor: pointer;
-  font-size: 1.05rem;
+  font-size: 1rem;
   transition: background-color 0.3s ease;
+  align-self: flex-start;
+  text-decoration: none;
+  text-align: center;
+  user-select: none;
 }
 
 .button:hover {
-  background-color: #004a99;
+  background-color: #0056b3;
+}
+
+@media (max-width: 480px) {
+  .card {
+    max-width: 100%;
+  }
+  .image {
+    height: 140px;
+  }
 }
