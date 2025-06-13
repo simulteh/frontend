@@ -10,15 +10,17 @@ import ProfilePage from './pages/ProfilePage';
 import TeacherProfilePage from './pages/TeacherProfilePage';
 import LabWorksPage from './pages/LabWorksPage';
 import { Weather } from './components/Weather';
+import SupportModal from './components/SupportModal';
 import './style/fonts.css';
 import './style/global.css';
 
 // Данные для новостей и карточек "О компании"
 import { newsData, aboutCardsData } from './constants/data';
 
+
 function App() {
   return (
-    <>
+      <>
       <Header /> {/* Шапка сайта */}
       <Routes>
         <Route
@@ -29,8 +31,8 @@ function App() {
                 title="Добро пожаловать в наше приложение" 
                 subtitle="Создайте свою виртуальную сеть прямо сейчас!" 
                 buttonText="Начать"
-              />
-
+                  />   
+                
               <section id="news" className="news">
                 <div className="container">
                   <h2>Новости</h2>
@@ -75,10 +77,12 @@ function App() {
 
         {/* Страница с лабораторными работами */}
         <Route path="/lab-works" element={<LabWorksPage />} />
-      </Routes>
+          </Routes>
+
+          <SupportModal />
 
       <Footer /> {/* Подвал сайта */}
-    </>
+      </>
   );
 }
 
