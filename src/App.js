@@ -1,14 +1,13 @@
-// App.js
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Welcome from './components/Welcome'; // импорт нового приветственного экрана
-import CourseCard from './components/CourseCard';
+import Welcome from './components/Welcome'; // импорт вашего компонента Welcome
+import CourseInfo from './components/CourseInfo';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Welcome />} />
-      <Route path="/course" element={<CourseCard />} />
+      <Route path="/course" element={<CourseInfo />} />
     </Routes>
   );
 }

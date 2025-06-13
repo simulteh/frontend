@@ -1,57 +1,120 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
-const CourseCard = () => {
-  const navigate = useNavigate();
-
-  const handleExitClick = () => {
-    navigate('/');
-  };
+const CourseInfo = ({ onExit }) => {
+  const [isPressed, setIsPressed] = useState(false);
 
   return (
     <div
       style={{
+        backgroundColor: '#4864EC',
         minHeight: '100vh',
-        backgroundColor: '#DFDCF8', // светло-фиолетовый фон
-        color: '#4439DE', // тёмно-синий текст
         padding: '2rem',
-        fontFamily: 'Arial, sans-serif',
+        boxSizing: 'border-box',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      <h1 style={{ color: '#4439DE' }}>КУРС</h1>
-      <h2 style={{ color: '#4864EC' }}>Введение в React</h2>
-      <p><strong>Длительность:</strong> 4 недели</p>
-      <p>Это базовый курс по React для начинающих.</p>
-      <p><strong>Автор:</strong> Салимзода Мирзо</p>
-      <p><strong>Уровень:</strong> Начальный</p>
-
-      <p style={{ marginTop: '2rem', fontSize: '1.1rem' }}>
-        Добро пожаловать в нашем<br />
-        Курс Введение в React<br />
-        Изучите основы React — популярной библиотеки для создания интерфейсов. Узнайте, как создавать компоненты, управлять состоянием и работать с событиями.
-      </p>
-
-      <button
-        onClick={handleExitClick}
+      <div
         style={{
-          marginTop: '2rem',
-          backgroundColor: '#4439DE',
-          color: '#FFFFFF',
-          border: 'none',
-          padding: '0.75rem 1.5rem',
-          borderRadius: '6px',
-          cursor: 'pointer',
-          fontSize: '1rem',
-          fontWeight: 'bold',
-          transition: 'background-color 0.3s',
+          maxWidth: 600,
+          width: '100%',
+          borderRadius: 12,
+          padding: '2rem',
+          backgroundColor: 'transparent',
+          color: '#DFDCFB',
+          fontFamily: 'Arial, sans-serif',
+          lineHeight: 1.5,
+          userSelect: 'none',
         }}
-        onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#4864EC')}
-        onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#4439DE')}
       >
-        Выйти
-      </button>
+        <h3
+          style={{
+            marginTop: 0,
+            marginBottom: '0.5rem',
+            fontWeight: 'bold',
+            letterSpacing: '0.1em',
+            color: '#FFFFFF',
+          }}
+        >
+          КУРС
+        </h3>
+        <h1
+          style={{
+            marginTop: 0,
+            marginBottom: '0.5rem',
+            color: '#FFFFFF',
+          }}
+        >
+          Введение в React
+        </h1>
+        <p style={{ marginTop: 0, marginBottom: '1rem', fontWeight: '500' }}>
+          Длительность: 4 недели
+        </p>
+
+        <p style={{ marginBottom: '1rem' }}>
+          Это базовый курс по React для начинающих.
+        </p>
+
+        <p style={{ marginBottom: '0.5rem' }}>
+          Автор: Салимзода Мирзо
+        </p>
+
+        <p style={{ marginBottom: '2rem' }}>
+          Уровень: Начальный
+        </p>
+
+        {/* Новый блок с расписанием и часами */}
+        <div
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.15)',
+            padding: '1.5rem',
+            borderRadius: '10px',
+            color: '#FFFFFF',
+            marginBottom: '2rem',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+          }}
+        >
+          <h2 style={{ marginTop: 0, marginBottom: '1rem' }}>
+            Расписание курса
+          </h2>
+          <ul style={{ paddingLeft: '1.2rem', marginTop: 0, marginBottom: 0 }}>
+            <li>1 неделя: Введение и основы React (6 часов)</li>
+            <li>2 неделя: Компоненты и пропсы (8 часов)</li>
+            <li>3 неделя: Состояние и события (8 часов)</li>
+            <li>4 неделя: Маршрутизация и проект (10 часов)</li>
+          </ul>
+          <p style={{ marginTop: '1rem', fontWeight: '600' }}>
+            Итого: 32 часа интенсивного обучения
+          </p>
+        </div>
+
+        <button
+          onClick={onExit}
+          onMouseDown={() => setIsPressed(true)}
+          onMouseUp={() => setIsPressed(false)}
+          onMouseLeave={() => setIsPressed(false)}
+          style={{
+            backgroundColor: isPressed ? '#FFFFFF' : 'transparent',
+            color: isPressed ? '#4864EC' : '#FFFFFF',
+            border: '2px solid #FFFFFF',
+            padding: '0.5rem 1.5rem',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontSize: '1rem',
+            fontWeight: 'bold',
+            transition: 'background-color 0.3s, color 0.3s, transform 0.1s',
+            transform: isPressed ? 'scale(0.95) translateY(2px)' : 'none',
+            userSelect: 'none',
+          }}
+          aria-label="Выйти"
+          type="button"
+        >
+          Выйти
+        </button>
+      </div>
     </div>
   );
 };
 
-export default CourseCard;
+export default CourseInfo;
