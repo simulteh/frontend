@@ -1,12 +1,10 @@
 import React from 'react'
-import '/ProgressBar.css' //Для стилей
+import '../style/ProgressBar.css' //Для стилей
 
-function ProgressBar() {
+function ProgressBar() { //Создам скруглённый прямоугольник
     return(
-        <div>
-            { //Создам скруглённый прямоугольник
-
-            }
+        <div className='ProgressBarRectangle'>
+        
         </div>
     )
 }
