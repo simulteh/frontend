@@ -1,118 +1,114 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const containerStyle = {
-  maxWidth: '900px',
-  margin: '40px auto',
-  padding: '30px 40px',
-  borderRadius: '12px',
-  backgroundColor: '#4439DE',
-  color: '#DFDCF8',
-  fontFamily: 'Arial, sans-serif',
-  display: 'flex',
-  gap: '40px',
-  alignItems: 'flex-start',
-};
-
-const textContainerStyle = {
-  flex: '1 1 0',
-};
-
-const imageStyle = {
-  width: '360px',      // увеличенная ширина
-  height: 'auto',
-  borderRadius: '12px',
-  boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
-  objectFit: 'cover',
-  flexShrink: 0,
-};
-
-const titleStyle = {
-  fontSize: '3rem',
-  fontWeight: '900',
-  marginBottom: '20px',
-  color: '#FFFFFF',
-};
-
-const labelStyle = {
-  fontWeight: '700',
-  marginTop: '20px',
-  marginBottom: '6px',
-  fontSize: '1.2rem',
-  color: '#DFDCF8',
-  opacity: 0.85,
-};
-
-const textStyle = {
-  fontSize: '1.5rem',
-  lineHeight: '1.5',
-  margin: 0,
-  color: '#DFDCF8',
-};
-
-const buttonStyle = {
-  marginTop: '30px',
-  padding: '12px 25px',
-  fontSize: '1.3rem',
-  fontWeight: '700',
-  backgroundColor: '#4864EC',
-  color: 'white',
-  border: 'none',
-  borderRadius: '8px',
-  cursor: 'pointer',
-  transition: 'background-color 0.3s ease',
-};
-
-const buttonHoverStyle = {
-  backgroundColor: '#364FC7',
-};
-
-export default function CourseDetail({
+const CourseDetail = ({
   title,
   duration,
-  preview,
   description,
   author,
+  position,
   level,
-  onClose,
-}) {
-  const [hover, setHover] = React.useState(false);
+  image,
+}) => {
+  const navigate = useNavigate();
+
+  const containerStyle = {
+    maxWidth: '700px',
+    margin: '40px auto',
+    padding: '20px',
+    fontFamily: 'Arial, sans-serif',
+    color: '#222',
+    backgroundColor: '#f9f9f9',
+    borderRadius: '12px',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+    position: 'relative',
+    textAlign: 'center',
+  };
+
+  const closeBtnStyle = {
+    position: 'absolute',
+    top: '15px',
+    right: '15px',
+    background: 'transparent',
+    border: 'none',
+    fontSize: '1.8rem',
+    cursor: 'pointer',
+    color: '#0047ab',
+  };
+
+  const imgStyle = {
+    width: '100%',
+    maxHeight: '300px',
+    objectFit: 'cover',
+    borderRadius: '12px',
+    marginBottom: '20px',
+  };
+
+  const labelStyle = {
+    fontSize: '1.6rem',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    color: '#0047ab',
+    marginBottom: '10px',
+  };
+
+  const titleStyle = {
+    fontSize: '2.8rem',
+    fontWeight: '900',
+    marginBottom: '10px',
+  };
+
+  const durationStyle = {
+    fontSize: '1.6rem',
+    fontWeight: '600',
+    marginBottom: '15px',
+    color: '#555',
+  };
+
+  const descriptionStyle = {
+    fontSize: '1.4rem',
+    lineHeight: 1.5,
+    marginBottom: '25px',
+  };
+
+  const authorStyle = {
+    fontSize: '1.3rem',
+    fontWeight: '600',
+    marginBottom: '4px',
+  };
+
+  const positionStyle = {
+    fontSize: '1.2rem',
+    fontWeight: '500',
+    color: '#666',
+    marginBottom: '10px',
+  };
+
+  const levelStyle = {
+    fontSize: '1.3rem',
+    fontWeight: '600',
+    color: '#0047ab',
+  };
 
   return (
-    <div style={containerStyle}>
-      <div style={textContainerStyle}>
-        <h1 style={titleStyle}>{title}</h1>
-
-        <p style={labelStyle}>Длительность:</p>
-        <p style={textStyle}>{duration}</p>
-
-        <p style={labelStyle}>Превью:</p>
-        <p style={textStyle}>{preview}</p>
-
-        <p style={labelStyle}>Описание:</p>
-        <p style={textStyle}>{description}</p>
-
-        <p style={labelStyle}>Автор:</p>
-        <p style={textStyle}>{author}</p>
-
-        <p style={labelStyle}>Уровень:</p>
-        <p style={textStyle}>{level}</p>
-
-        <button
-          style={hover ? {...buttonStyle, ...buttonHoverStyle} : buttonStyle}
-          onClick={onClose}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          Закрыть
-        </button>
-      </div>
-
-      <img
-        src="https://i.postimg.cc/GtY3sXMc/Screenshot-8.jpg"
-        alt={title}
-        style={imageStyle}
-      />
+    <div style={containerStyle} role="dialog" aria-modal="true" aria-labelledby="course-title">
+      <button
+        onClick={() => navigate(-1)}
+        style={closeBtnStyle}
+        aria-label="Закрыть"
+      >
+        ×
+      </button>
+      <img src={image} alt={title} style={imgStyle} />
+      <p style={labelStyle}>КУРС</p>
+      <h1 id="course-title" style={titleStyle}>{title}</h1>
+      <p style={durationStyle}>Длительность: {duration}</p>
+      <p style={descriptionStyle}>{description}</p>
+      <p style={authorStyle}>Автор: {author}</p>
+      <p style={positionStyle}>{position}</p>
+      <p style={levelStyle}>Уровень: {level}</p>
     </div>
   );
-}
+};
 
+export default CourseDetail;
