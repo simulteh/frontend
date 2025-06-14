@@ -25,7 +25,7 @@ const CourseInfo = ({ onExit }) => {
           color: '#DFDCFB',
           fontFamily: 'Arial, sans-serif',
           lineHeight: 1.5,
-          userSelect: 'none',
+          // ❌ userSelect: 'none', — удалено
         }}
       >
         <h3
@@ -64,7 +64,6 @@ const CourseInfo = ({ onExit }) => {
           Уровень: Начальный
         </p>
 
-        {/* Новый блок с расписанием и часами */}
         <div
           style={{
             backgroundColor: 'rgba(255, 255, 255, 0.15)',
@@ -105,7 +104,7 @@ const CourseInfo = ({ onExit }) => {
             fontWeight: 'bold',
             transition: 'background-color 0.3s, color 0.3s, transform 0.1s',
             transform: isPressed ? 'scale(0.95) translateY(2px)' : 'none',
-            userSelect: 'none',
+            userSelect: 'none', // ← оставляем только здесь
           }}
           aria-label="Выйти"
           type="button"
