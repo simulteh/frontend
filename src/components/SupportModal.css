@@ -56,6 +56,9 @@
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  resize: none;
+  height: 40px;
+  overflow: auto;
 }
 
 .modal button[type="submit"] {
