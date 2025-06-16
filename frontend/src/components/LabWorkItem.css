@@ -1,0 +1,57 @@
+.lab-work-item {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.lab-work-header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.arrow {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.arrow.open {
+    transform: rotate(180deg);
+}
+
+.lab-work-content {
+    padding: 15px;
+    background-color: #fff;
+}
+
+.lab-work-file {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.folder-icon, .pdf-icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.folder-icon {
+    color: #e74c3c;
+}
+
+.pdf-icon {
+    color: #2ecc71;
+}
+
+.file-name {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.file-name:hover {
+    text-decoration: underline;
+}
