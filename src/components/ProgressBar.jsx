@@ -9,6 +9,11 @@ function ProgressBar (task) {
     //Нахождение процента выполнения
     const procent = total > 0 ? Math.round ((completed / total)*100) : 0
 
+    const ProgressColor = () => {
+        if (procent < 50) return '#ff0000'
+        if (procent < 69) return '#ffa500'   
+        if (procent > 70) return '#00ff00'
+    }
     return(
         /*Контейнер для компонента*/
         <div className='ProgressBarContainer'>
@@ -17,7 +22,16 @@ function ProgressBar (task) {
          <div className='ProgressBarProcent'> {procent}% </div>
 
         {/*Шкала прогресса*/}   
-         <div className='ProgressBarRectangle'></div>
+         <div className='ProgressBarRectangle'>
+         {/*Заполненная часть шкалы прогресса*/}
+          <div className='ProgressBarColor'
+          style={{
+             width: '${procent}%',
+             backgroundColor: ProgressColor()
+          }
+          }>
+          </div>            
+         </div>
 
         {/*Выполненные задания*/}
          <div className='CompletedTasks'>
