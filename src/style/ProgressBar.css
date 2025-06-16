@@ -1,0 +1,7 @@
+.ProgressBarRectangle {
+    width: 200px;
+    height: 100px;
+    background-color: #ffffff;
+    border: 2 px solid #808080;
+    border-radius: 15px;
+}
