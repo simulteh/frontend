@@ -1,23 +1,27 @@
 .ProgressBarRectangle {
     display: flex;
     width: 100%;
-    height: 50px;
-    background-color: #ffffff;
-    border: 2px solid #555555;
-    border-radius: 15px;
-    
+    height: 37px;
+    background-color: #dfdcf8;
+    border-radius: 13px;
 }
 
 .ProgressBarColor {
     margin: 0 auto;   
     height: 100%;
-    border-radius: 12px;
+    border-radius: 13px;
 }
 
 .ProgressBarProcent {
     font-weight: normal;
-    font-size: 14px;
-    color: #858585;
+    font-size: 16px;
+    color: #585858;
+}
+
+.CompletedTasks {
+    font-weight: bold;
+    font-size: 19px;
+    color: #585858;
 }
 
 .ProgressBarContainer {
@@ -25,12 +29,6 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 150px;
+    max-width: 340px;
     margin: 0 auto;
-}
-
-.CompletedTasks {
-    font-weight: normal;
-    font-size: 16px;
-    color: #858585;
 }
