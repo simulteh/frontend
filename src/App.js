@@ -9,6 +9,8 @@ import AuthPage from './pages/AuthPage';
 import ProfilePage from './pages/ProfilePage';
 import TeacherProfilePage from './pages/TeacherProfilePage';
 import LabWorksPage from './pages/LabWorksPage';
+import Welcome from './components/Welcome';
+import CourseInfo from './components/CourseInfo';
 import { Weather } from './components/Weather';
 import './style/fonts.css';
 import './style/global.css';
@@ -75,6 +77,9 @@ function App() {
 
         {/* Страница с лабораторными работами */}
         <Route path="/lab-works" element={<LabWorksPage />} />
+
+        <Route path="/course/welcome" element={<Welcome />} />
+        <Route path="/course/info" element={<CourseInfo />} />
       </Routes>
 
       <Footer /> {/* Подвал сайта */}
