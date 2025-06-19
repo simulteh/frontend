@@ -10,6 +10,7 @@ import ProfilePage from './pages/ProfilePage';
 import TeacherProfilePage from './pages/TeacherProfilePage';
 import LabWorksPage from './pages/LabWorksPage';
 import { Weather } from './components/Weather';
+import { NotFoundPage } from "./components/NotFoundPage";
 import './style/fonts.css';
 import './style/global.css';
 
@@ -75,6 +76,8 @@ function App() {
 
         {/* Страница с лабораторными работами */}
         <Route path="/lab-works" element={<LabWorksPage />} />
+
+        <Route path="*" element={<NotFoundPage />} /> {/* 404 для всех путей */}
       </Routes>
 
       <Footer /> {/* Подвал сайта */}
