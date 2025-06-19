@@ -12,7 +12,7 @@ import LabWorksPage from './pages/LabWorksPage';
 import { Weather } from './components/Weather';
 import './style/fonts.css';
 import './style/global.css';
-
+import  { VideoPlayer } from './components/VideoPlayer';
 // Данные для новостей и карточек "О компании"
 import { newsData, aboutCardsData } from './constants/data';
 
@@ -72,6 +72,8 @@ function App() {
 
         {/* Страница профиля преподавателя */}
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
+
+        <Route path="/video-player" element={<VideoPlayer />} />
 
         {/* Страница с лабораторными работами */}
         <Route path="/lab-works" element={<LabWorksPage />} />
