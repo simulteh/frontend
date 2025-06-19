@@ -12,6 +12,7 @@ import LabWorksPage from './pages/LabWorksPage';
 import { Weather } from './components/Weather';
 import './style/fonts.css';
 import './style/global.css';
+import {Quiz} from './components/Quiz';
 
 // Данные для новостей и карточек "О компании"
 import { newsData, aboutCardsData } from './constants/data';
@@ -75,6 +76,9 @@ function App() {
 
         {/* Страница с лабораторными работами */}
         <Route path="/lab-works" element={<LabWorksPage />} />
+
+        {/* Квиз */}
+        <Route path="/quiz" element={<Quiz />} />
       </Routes>
 
       <Footer /> {/* Подвал сайта */}

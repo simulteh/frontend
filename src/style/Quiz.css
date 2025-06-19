@@ -1,0 +1,126 @@
+:root {
+  --primary-dark: #4439DE;
+  --primary-light: #4864EC;
+  --background: #DFDCF8;
+  --white: #FFFFFF;
+  --text: #2A2A2A;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+}
+
+.quiz {
+  text-align: center;
+  background-color: var(--white);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(68, 57, 222, 0.15);
+  max-width: 500px;
+  width: 90%;
+  border: 1px solid rgba(72, 100, 236, 0.2);
+}
+
+h1 {
+  margin-bottom: 2rem;
+  color: var(--primary-dark);
+  font-size: 1.8rem;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  padding: 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  background-color: var(--primary-light);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background-color: #D3D3D3;
+  transform: none;
+  cursor: not-allowed;
+}
+
+.progress {
+  margin-bottom: 1.5rem;
+  color: var(--primary-light);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.result {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  min-height: 2rem;
+  padding: 1rem;
+  background-color: rgba(223, 220, 248, 0.5);
+  border-radius: 12px;
+}
+
+.score {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--primary-dark);
+  background-color: var(--background);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result, .score {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.timer-container {
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  margin: 1rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.timer-bar {
+  height: 100%;
+  background-color: var(--primary-light);
+  transition: width 1s linear;
+}
+
+.timer-text {
+  position: absolute;
+  right: 0;
+  top: -20px;
+  font-size: 0.8rem;
+  color: var(--primary-dark);
+}
