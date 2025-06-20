@@ -1,17 +1,34 @@
 import React, { useState } from 'react';
 import './AuthForm.css'; // Подключаем стили
+import { useNavigate } from 'react-router-dom';
 
+const teachers = [
+  {
+    email: 'gane126@yandex.ru',
+    password: '1234',
+    name: 'Аксаков Андрей',
+  },
+];
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true); // Переключатель между входом и регистрацией
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Здесь можно добавить логику для отправки данных на сервер
-  };
+
+    const user = teachers.find(
+  (t) => t.email === email && t.password === password
+);
+
+if (user) {
+  console.log('Успешный вход:', user.name);
+  navigate('/teacher-profile');
+} else {
+  alert('Неверный логин или пароль');
+}
+  }
 
   return (
     <div className="auth-container">
