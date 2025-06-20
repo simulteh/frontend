@@ -13,6 +13,7 @@ export const Header = () => (
             <li><a href="#news">Новости</a></li>
             <li><a href="#about">О компании</a></li>
             <li><a href="#workflow">Как мы работаем</a></li>
+             <li><a href="course-Page">Курсы</a></li>
           </ul>
         </nav>
       </div>
