@@ -9,6 +9,7 @@ import AuthPage from './pages/AuthPage';
 import ProfilePage from './pages/ProfilePage';
 import TeacherProfilePage from './pages/TeacherProfilePage';
 import LabWorksPage from './pages/LabWorksPage';
+import CommentsPage from './components/CommentsPage';
 import { Weather } from './components/Weather';
 import './style/fonts.css';
 import './style/global.css';
@@ -64,6 +65,8 @@ function App() {
         {/* Страница авторизации */}
         <Route path="/auth" element={<AuthPage />} />
 
+        <Route path="/comments" element={<CommentsPage />} />
+
                 {/* Страница авторизации */}
                 <Route path="/weather" element={<Weather />} />
 
@@ -75,6 +78,7 @@ function App() {
 
         {/* Страница с лабораторными работами */}
         <Route path="/lab-works" element={<LabWorksPage />} />
+         <Route path="/comments" element={<CommentsPage />} />
       </Routes>
 
       <Footer /> {/* Подвал сайта */}
