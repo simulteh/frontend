@@ -12,7 +12,7 @@ import LabWorksPage from './pages/LabWorksPage';
 import { Weather } from './components/Weather';
 import './style/fonts.css';
 import './style/global.css';
-
+import { Comments } from './components/Comments';
 // Данные для новостей и карточек "О компании"
 import { newsData, aboutCardsData } from './constants/data';
 
@@ -69,7 +69,7 @@ function App() {
 
         {/* Страница профиля */}
         <Route path="/profile" element={<ProfilePage />} />
-
+<Route path="/comments" element={<Comments />} />
         {/* Страница профиля преподавателя */}
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
 
