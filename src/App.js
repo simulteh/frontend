@@ -9,7 +9,7 @@ import AuthPage from './pages/AuthPage';
 import ProfilePage from './pages/ProfilePage';
 import TeacherProfilePage from './pages/TeacherProfilePage';
 import LabWorksPage from './pages/LabWorksPage';
-import { Weather } from './components/Weather';
+import Weather from './components/weather2';
 import './style/fonts.css';
 import './style/global.css';
 
