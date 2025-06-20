@@ -10,6 +10,7 @@
     background-color: #4439de;   
     height: 100%;
     border-radius: 13px;
+    filter: blur(1.4px);
 }
 
 .ProgressBarProcent {

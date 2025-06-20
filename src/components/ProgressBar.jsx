@@ -20,10 +20,7 @@ export const ProgressBar = (task) => {
          <div className='ProgressBarRectangle'>
          {/*Заполненная часть шкалы прогресса*/}
           <div className='ProgressBarColor'
-           style={{
-              width: procent*3.4,
-              filter: 'blur(1.4px)',             
-          }}>
+           style={{ width: procent*3.4 }}>
           </div>            
          </div>
 
