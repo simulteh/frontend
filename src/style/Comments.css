@@ -1,0 +1,35 @@
+.comments-container {
+    background-color:white;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.comments-title {
+    color: blue;
+}
+
+.no-comments {
+    color: white;
+}
+
+.comments-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.comment-item {
+    margin-bottom: 10px;
+    border: 1px solid blue;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white; /* Темный фон для комментария */
+}
+
+.comment-author {
+    color: blue; /* Синий цвет для имени автора */
+}
+
+.comment-date {
+    color: black; /* Светло-серый цвет для даты */
+}
