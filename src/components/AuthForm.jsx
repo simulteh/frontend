@@ -1,17 +1,28 @@
 import React, { useState } from 'react';
 import './AuthForm.css'; // Подключаем стили
+import { useNavigate } from 'react-router-dom';
+
 
 const AuthForm = () => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true); // Переключатель между входом и регистрацией
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Здесь можно добавить логику для отправки данных на сервер
-  };
+
+    if (isLogin) {
+      if (email === 'testemail@simulteh.com' && password === '12345test') {
+        navigate('/profile'); // если логин/пароль совпадают
+      } else {
+        alert('Неверный логин или пароль');
+      }
+    } else {
+      alert('Регистрация пока не реализована');
+    }
+  };  
+
 
   return (
     <div className="auth-container">

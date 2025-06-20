@@ -41,7 +41,7 @@ button, input, textarea {
 
 .profile-info, .download-section, .grades-section {
     margin-bottom: 40px;
-    max-width: 600px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
