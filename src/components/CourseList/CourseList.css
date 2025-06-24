@@ -1,0 +1,148 @@
+.course-list {
+  padding: 32px 0 32px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.course-list h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #1A1B1F;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  padding: 0 16px;
+  overflow: visible;
+}
+
+@media (max-width: 900px) {
+  .course-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .course-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 6px;
+  }
+}
+
+.course-details {
+  padding: 1.5rem;
+  background: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.course-details span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.course-details span:before {
+  content: "•";
+  color: #4864EC;
+}
+
+.course-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #4864EC;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px 0 rgba(72, 100, 236, 0.10);
+  z-index: 2;
+  letter-spacing: 0.5px;
+}
+
+.course-rating {
+  margin-left: auto;
+  color: #f7b500;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.course-teacher {
+  font-size: 13px;
+  color: #4864EC;
+  margin-top: 4px;
+  margin-left: 18px;
+  font-weight: 500;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .course-list {
+    padding: 10px;
+  }
+  
+  .course-list h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.big-discount-banner {
+  background: none;
+  border: none;
+  color: #23272f;
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 auto 32px auto;
+  max-width: 900px;
+  width: 100%;
+  padding: 0;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 8px #ff1744, 0 0 16px #ff5252;
+}
+
+.red-accent {
+  color: #ff1744;
+  text-shadow: 0 0 8px #ff1744, 0 0 16px #ff5252, 0 0 24px #ff1744;
+  animation: neon-red-text-animate 2.5s linear infinite alternate;
+}
+
+@keyframes neon-red-text-animate {
+  0% {
+    text-shadow: 0 0 8px #ff1744, 0 0 16px #ff5252, 0 0 24px #ff1744;
+    color: #ff1744;
+  }
+  50% {
+    text-shadow: 0 0 16px #ff5252, 0 0 32px #ff1744, 0 0 40px #ff5252;
+    color: #ff5252;
+  }
+  100% {
+    text-shadow: 0 0 8px #ff1744, 0 0 16px #ff5252, 0 0 24px #ff1744;
+    color: #ff1744;
+  }
+} 
