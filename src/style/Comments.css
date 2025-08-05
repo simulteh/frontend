@@ -1,0 +1,45 @@
+.comments-container {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.comments-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.no-comments {
+  text-align: center;
+  color: #999;
+}
+
+.comment-card {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-left: 4px solid #4864EC;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #4864EC;
+  margin-bottom: 8px;
+}
+
+.comment-text {
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.comment-date {
+  font-size: 0.85rem;
+  color: #888;
+}
