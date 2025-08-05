@@ -13,6 +13,7 @@ import { Weather } from './components/Weather';
 import SupportModal from './components/SupportModal';
 import './style/fonts.css';
 import './style/global.css';
+import SupportAdminPage from './components/SupportAdminPage';
 import { Comments } from './components/Comments';
 // Данные для новостей и карточек "О компании"
 import { newsData, aboutCardsData } from './constants/data';
@@ -77,7 +78,8 @@ function App() {
 
         {/* Страница с лабораторными работами */}
         <Route path="/lab-works" element={<LabWorksPage />} />
-          </Routes>
+        <Route path="/admin" element={<SupportAdminPage />} />
+      </Routes>
 
           <SupportModal />
 
