@@ -10,17 +10,17 @@ function formatDate(dateString) {
 export const Comments= ()=> {
   const comments = [
   {
-    author: "Иван Иванов",
+    author: "Иван Иванов ",
     date: "2023-10-01",
     text: "Мне нравится эта статья!"
   },
   {
-    author: "Мария Петрова",
+    author: "Мария Петрова ",
     date: "2023-10-02",
     text: "Полезная информация, спасибо!"
   },
   {
-    author: "Анна Смирнова",
+    author: "Анна Смирнова ",
     date: "2023-10-03",
     text: "Хотелось бы подробнее узнать о теме."
   }
