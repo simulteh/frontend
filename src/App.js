@@ -9,15 +9,18 @@ import AuthPage from './pages/AuthPage';
 import ProfilePage from './pages/ProfilePage';
 import TeacherProfilePage from './pages/TeacherProfilePage';
 import LabWorksPage from './pages/LabWorksPage';
+import SupportModal from './components/SupportModal';
 import './style/fonts.css';
 import './style/global.css';
-
+import SupportAdminPage from './components/SupportAdminPage';
+import { Comments } from './components/Comments';
 // Данные для новостей и карточек "О компании"
 import { newsData, aboutCardsData } from './constants/data';
 
+
 function App() {
   return (
-    <>
+      <>
       <Header /> {/* Шапка сайта */}
       <Routes>
         <Route
@@ -28,8 +31,8 @@ function App() {
                 title="Добро пожаловать в наше приложение" 
                 subtitle="Создайте свою виртуальную сеть прямо сейчас!" 
                 buttonText="Начать"
-              />
-
+                  />   
+                
               <section id="news" className="news">
                 <div className="container">
                   <h2>Новости</h2>
@@ -68,16 +71,19 @@ function App() {
 
         {/* Страница профиля */}
         <Route path="/profile" element={<ProfilePage />} />
-
+<Route path="/comments" element={<Comments />} />
         {/* Страница профиля преподавателя */}
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
 
         {/* Страница с лабораторными работами */}
         <Route path="/lab-works" element={<LabWorksPage />} />
+        <Route path="/admin" element={<SupportAdminPage />} />
       </Routes>
 
+          <SupportModal />
+
       <Footer /> {/* Подвал сайта */}
-    </>
+      </>
   );
 }
 
