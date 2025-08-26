@@ -9,7 +9,6 @@ import AuthPage from './pages/AuthPage';
 import ProfilePage from './pages/ProfilePage';
 import TeacherProfilePage from './pages/TeacherProfilePage';
 import LabWorksPage from './pages/LabWorksPage';
-import { Weather } from './components/Weather';
 import './style/fonts.css';
 import './style/global.css';
 
@@ -47,7 +46,10 @@ function App() {
                   <h2>О компании</h2>
                   <div className="about-content">
                     <div className="about-text">
-                      <p>Наша компания разрабатывает инновационное приложение...</p>
+                      <p>Наша компания разрабатывает инновационное приложение для геймификации обучения компьютерным и локальным сетям. 
+                        С помощью увлекательных игровых механик, интерактивных заданий и наглядных симуляций мы превращаем сложные технические темы в захватывающий образовательный опыт. 
+                        Приложение подходит как для студентов, так и для IT-специалистов, помогая им легко освоить основы сетевых технологий, 
+                        протоколы передачи данных и принципы работы локальных сетей в увлекательной форме. Учитесь с интересом и достигайте новых уровней мастерства!</p>
                     </div>
                     <div className="about-cards">
                       {aboutCardsData.map((card, index) => (
@@ -63,9 +65,6 @@ function App() {
 
         {/* Страница авторизации */}
         <Route path="/auth" element={<AuthPage />} />
-
-                {/* Страница авторизации */}
-                <Route path="/weather" element={<Weather />} />
 
         {/* Страница профиля */}
         <Route path="/profile" element={<ProfilePage />} />

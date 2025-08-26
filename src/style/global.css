@@ -20,11 +20,49 @@ button, input, textarea {
     font-family: 'Montserrat', sans-serif;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.privacy-link {
+    color: #757575;
+    text-decoration: none;
+    transition: color 0.3s;
+    margin-right: auto;
+    padding: 5px 10px;
+}
+
+.privacy-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.copyright {
+    color: #757575;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo-link {
+    margin-left: auto;
+}
+
+.partner-logo {
+    height: 45px;
+    width: auto;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.partner-logo:hover {
+    opacity: 1;
 }
 
 .profile {
