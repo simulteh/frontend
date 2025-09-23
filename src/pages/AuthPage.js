@@ -6,7 +6,6 @@ const AuthPage = () => {
   return (
     <div className="auth-page">
       <div className="container">
-        <h2>Авторизация/Регистрация</h2>
         <AuthForm />
       </div>
     </div>

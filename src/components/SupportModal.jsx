@@ -1,5 +1,5 @@
-﻿// JavaScript source code
-import React, { useState } from 'react';
+// SupportModal.js
+import React, { useState, useEffect } from 'react';
 import './SupportModal.css';
 
 const SupportModal = () => {
@@ -31,23 +31,53 @@ const SupportModal = () => {
         }, 2000);
     };
 
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    // Предотвращаем скроллинг страницы когда модальное окно открыто
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isModalOpen]);
+
     return (
         <>
-            {/* Кнопка внизу */}
-            <section className="support-section">
-                <button className="support-button" onClick={() => setIsModalOpen(true)}>
+            {/* Кнопка поддержки */}
+            <div className="support-section">
+                <button 
+                    className="support-button" 
+                    onClick={() => setIsModalOpen(true)}
+                    aria-label="Открыть форму поддержки"
+                >
                     💬 
+                    <span className="support-tooltip">Задать вопрос</span>
                 </button>
-            </section>
+            </div>
 
             {/* Модальное окно */}
             {isModalOpen && (
-                <div className="modal-overlay" onClick={handleSubmit}>
-                    <div className="modal animate" onClick={(e) => e.stopPropagation()}>
-                        <span className="close-btn" onClick={() => setIsModalOpen(false)}>&times;</span>
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <button 
+                            className="close-btn" 
+                            onClick={closeModal}
+                            aria-label="Закрыть окно"
+                        >
+                            &times;
+                        </button>
                         <h2>Форма обращения</h2>
                         {submitted ? (
-                            <p>Ваш вопрос успешно отправлен!</p>
+                            <div className="success-message">
+                                <p>Ваш вопрос успешно отправлен!</p>
+                            </div>
                         ) : (
                             <form onSubmit={handleSubmit}>
                                 <input

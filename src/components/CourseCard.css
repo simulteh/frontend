@@ -1,0 +1,198 @@
+.course-card {
+  background: #fff;
+  border: none;
+  border-radius: 14px;
+  margin: 18px;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  box-shadow: 0 4px 24px 0 rgba(40, 60, 90, 0.10);
+  transition: box-shadow 0.25s, transform 0.25s;
+  animation: fadeInUp 0.7s cubic-bezier(.23,1.01,.32,1) both;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.course-card:hover {
+  box-shadow: 0 6px 18px 0 rgba(72, 100, 236, 0.18);
+  transform: scale(1.04);
+}
+
+.course-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  border-radius: 14px 14px 0 0;
+  border-bottom: 1px solid #f0f0f0;
+  margin: 0;
+  height: auto;
+}
+
+.course-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 24px 20px 32px 20px;
+  height: 100%;
+}
+
+.course-card h3 {
+  margin: 0 0 14px 0;
+  font-size: 1.45rem;
+  color: #23272f;
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.course-card:hover h3 {
+  color: #1a1b1f;
+}
+
+.course-card p {
+  margin: 0 0 18px 0;
+  font-size: 1.05rem;
+  color: #7a7a7a;
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.course-level-badge,
+.course-duration-badge {
+  display: block;
+  width: 100%;
+  min-width: unset;
+  max-width: unset;
+  box-sizing: border-box;
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  padding: 8px 18px;
+  font-size: 0.93rem;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.course-level-badge {
+  background: #f6f8fc;
+  color: #4864EC;
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(72,100,236,0.07);
+  letter-spacing: 0.01em;
+}
+
+.course-level-badge.level-beginner {
+  background: #eaffea;
+  color: #3bb13b;
+}
+
+.course-level-badge.level-advanced {
+  background: #fff6e0;
+  color: #e6a100;
+}
+
+.course-duration-badge {
+  background: #f6f8fc;
+  color: #4864EC;
+  border-radius: 0 0 14px 14px;
+  box-shadow: 0 2px 8px rgba(72,100,236,0.07);
+  letter-spacing: 0.01em;
+}
+
+.course-duration-badge.level-beginner {
+  background: #eaffea;
+  color: #3bb13b;
+}
+
+.course-duration-badge.level-advanced {
+  background: #fff6e0;
+  color: #e6a100;
+}
+
+.enroll-button {
+  margin: 0;
+  margin-top: auto;
+  background: linear-gradient(90deg, #4864EC 0%, #6A82FB 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  font-weight: 600;
+  box-shadow: 0 2px 8px 0 rgba(72, 100, 236, 0.10);
+  transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.enroll-button:hover {
+  background: linear-gradient(90deg, #3249b7 0%, #4864EC 100%);
+  box-shadow: 0 6px 18px 0 rgba(72, 100, 236, 0.18);
+  transform: scale(1.04);
+}
+
+.course-image-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.course-image-wrapper img {
+  display: block;
+  width: 100%;
+  border-radius: 14px 14px 0 0;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background: #3bb13b;
+  color: #fff;
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 7px 18px 7px 18px;
+  border-radius: 14px 14px 0 0;
+  box-shadow: 0 2px 8px rgba(40,60,90,0.10);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .course-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .enroll-button {
+    padding: 0.6rem 1.2rem;
+  }
+}

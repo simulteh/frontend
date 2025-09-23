@@ -1,24 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-export const Header = () => (
-  <header>
-    <div className="container">
-      <div className="left-section">
-        <Link to="/" className="logo">
-          <h1>Симултех</h1>
-        </Link>
-        <nav>
-          <ul>
-            <li><a href="#news">Новости</a></li>
-            <li><a href="#about">О компании</a></li>
-            <li><a href="#workflow">Как мы работаем</a></li>
-          </ul>
-        </nav>
+export const Header = () => {
+  const location = useLocation();
+
+  const scrollToSection = (id) => (e) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      // Если мы не на главной, переходим на главную, потом скроллим
+      window.location.href = `/#${id}`;
+      return;
+    }
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <header>
+      <div className="container">
+        <div className="left-section">
+          <Link to="/" className="logo">
+            <h1>Симултех</h1>
+          </Link>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/#news" onClick={scrollToSection('news')}>Новости</Link>
+              </li>
+              <li>
+                <Link to="/#about" onClick={scrollToSection('about')}>О компании</Link>
+              </li>
+              <li>
+                <Link to="/courses">Курсы</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div className="right-section">
+          <Link to="/auth" className="btn">Войти</Link>
+        </div>
       </div>
-      <div className="right-section">
-        <Link to="/auth" className="btn">Войти</Link> {/* Используем Link вместо <a> */}
-      </div>
-    </div>
-  </header>
-);
+    </header>
+  );
+};

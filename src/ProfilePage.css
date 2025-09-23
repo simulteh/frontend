@@ -1,27 +1,129 @@
-/* src/pages/ProfilePage.css */
-
 .profile {
-    background: #f8f9fa;
-    padding: 50px 0;
-    text-align: center;
+  padding: 40px 20px;
+  background: #f7f7f7;
+  min-height: 100vh;
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  animation: fadeInUp 0.7s cubic-bezier(.23,1.01,.32,1) both;
+}
+
+.profile .container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(40, 60, 90, 0.08);
 }
 
 .profile h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: #333;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #23272f;
+  margin-bottom: 32px;
+  text-align: center;
 }
 
-.profile-info, .download-section, .grades-section {
-    margin-bottom: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left; /* Выравнивание текста влево */
+/* ProfileInfo */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(72, 100, 236, 0.1);
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+.profile-info p {
+  font-size: 1rem;
+  color: #4a5568;
+  margin: 0.5rem 0;
+}
+
+/* DownloadSection */
+.download-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 16px rgba(72, 100, 236, 0.1);
+}
+
+.download-section a {
+  display: inline-block;
+  margin: 8px 8px 0 0;
+  background: linear-gradient(90deg, #4864EC 0%, #6A82FB 100%);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.download-section a:hover {
+  background: linear-gradient(90deg, #3249b7 0%, #4864EC 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(72, 100, 236, 0.25);
+}
+
+/* GradesTable */
+.grades-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(72, 100, 236, 0.1);
+}
+
+.grades-table th, .grades-table td {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #23272f;
+}
+
+.grades-table th {
+  background: #4864EC;
+  color: #fff;
+  font-weight: 600;
+}
+
+.grades-table tr:nth-child(even) {
+  background: #f7f7f7;
+}
+
+.grades-table tr:hover {
+  background: #e4ebff;
+}
+
+/* WeatherWidget */
+.profile .weather-widget {
+  max-width: 350px;
+  margin: 20px auto 0 auto;
+}
+
+/* Анимация */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .profile .container {
+    padding: 24px;
+  }
+
+  .grades-table th, .grades-table td {
+    padding: 8px 12px;
+  }
 }
