@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './AuthForm.css';
 
-//const API_URL = "http://localhost:8080"; // URL бэкенда
+const API_URL = "http://212.67.12.82:8080"; // URL бэкенда
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -24,7 +24,7 @@ const AuthForm = () => {
     try {
       if (isLogin) {
         // 🔑 Вход
-        const res = await axios.post(`/auth/sign-in`, {
+        const res = await axios.post(`${API_URL}/auth/sign-in`, {
           email,
           password,
         });
@@ -35,7 +35,7 @@ const AuthForm = () => {
         }
       } else {
         // 📝 Регистрация
-        const res = await axios.post(`/auth/sign-up`, {
+        const res = await axios.post(`${API_URL}/auth/sign-up`, {
           firstName,
           lastName,
           middleName,
