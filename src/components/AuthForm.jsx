@@ -1,37 +1,66 @@
 import React, { useState } from 'react';
-import './AuthForm.css'; // Подключаем ваши стили
+import axios from 'axios';
+import './AuthForm.css';
+
+const API_URL = "http://localhost:8080"; // URL бэкенда
 
 const AuthForm = () => {
-  const [isLogin, setIsLogin] = useState(true); // Переключатель между входом и регистрацией
+  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [middleName, setMiddleName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (isLogin) {
-      console.log('Вход:');
-      console.log('Email:', email);
-      console.log('Password:', password);
-    } else {
-      console.log('Регистрация:');
-      console.log('Фамилия:', lastName);
-      console.log('Имя:', firstName);
-      console.log('Отчество:', middleName);
-      console.log('Email:', email);
-      console.log('Password:', password);
+    setError('');
+    setSuccess('');
+    setLoading(true);
+
+    try {
+      if (isLogin) {
+        // 🔑 Вход
+        const res = await axios.post(`${API_URL}/auth/login`, {
+          email,
+          password,
+        });
+        if (res.data.token) {
+          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('email', email); // сохраняем email пользователя
+          setSuccess('Успешный вход!');
+        }
+      } else {
+        // 📝 Регистрация
+        const res = await axios.post(`${API_URL}/auth/register`, {
+          firstName,
+          lastName,
+          middleName,
+          email,
+          password,
+        });
+
+        if (res.data.message) {
+          setSuccess(res.data.message);
+        } else {
+          setSuccess('Регистрация успешна!');
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      setError(err.response?.data?.message || 'Ошибка при отправке запроса');
+    } finally {
+      setLoading(false);
     }
-    // Здесь можно добавить логику для отправки данных на сервер
   };
 
   return (
     <div className="auth-container">
       <h2>{isLogin ? 'Вход' : 'Регистрация'}</h2>
       <form onSubmit={handleSubmit}>
-        {/* Поля для имени, фамилии и отчества (только для регистрации) */}
         {!isLogin && (
           <>
             <div className="form-group">
@@ -44,7 +73,7 @@ const AuthForm = () => {
                 required
               />
             </div>
-            
+
             <div className="form-group">
               <label htmlFor="firstName">Имя</label>
               <input
@@ -55,7 +84,7 @@ const AuthForm = () => {
                 required
               />
             </div>
-            
+
             <div className="form-group">
               <label htmlFor="middleName">Отчество (при наличии)</label>
               <input
@@ -67,7 +96,7 @@ const AuthForm = () => {
             </div>
           </>
         )}
-        
+
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -90,8 +119,11 @@ const AuthForm = () => {
           />
         </div>
 
-        <button type="submit" className="submit-btn">
-          {isLogin ? 'Войти' : 'Зарегистрироваться'}
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
+
+        <button type="submit" className="submit-btn" disabled={loading}>
+          {loading ? 'Загрузка...' : isLogin ? 'Войти' : 'Зарегистрироваться'}
         </button>
       </form>
 

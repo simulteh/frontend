@@ -1,0 +1,77 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* убираем padding, чтобы ширина не ограничивалась */
+  box-sizing: border-box;
+}
+
+.modal {
+  background: #fff;
+  padding: 25px 35px;
+  border-radius: 12px;
+  width: 90vw;       /* ширина 90% от ширины окна браузера */
+  max-width: 900px;  /* максимум 900px */
+  max-height: 90vh;  /* не больше 90% высоты окна */
+  overflow-y: auto;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+
+.policy-text {
+  max-height: 800px;
+  overflow-y: auto;
+  text-align: left;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.checkbox-group {
+  margin: 15px 0;
+  text-align: left;
+}
+
+.btn {
+  display: inline-block; /* или block, если хочешь чтобы занимала всю ширину */
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: auto; /* кнопка по содержимому */
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* расстояние между текстом и чекбоксом */
+}
+
+.checkbox-group label {
+  flex: 1;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  cursor: pointer;
+  transform: none;
+}

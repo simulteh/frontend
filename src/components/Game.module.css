@@ -1,0 +1,12 @@
+.gameWindow {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+}

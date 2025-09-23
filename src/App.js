@@ -1,38 +1,65 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+// src/App.js
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+
+// Компоненты
+import ConsentModal from './components/ConsentModal';
 import { Header } from './components/Header';
-import { HeroSection } from './components/HeroSection';
 import { NewsItem } from './components/NewsItem';
 import { AboutCard } from './components/AboutCard';
 import { Footer } from './components/Footer';
+import SupportModal from './components/SupportModal';
 import AuthPage from './pages/AuthPage';
 import ProfilePage from './pages/ProfilePage';
 import TeacherProfilePage from './pages/TeacherProfilePage';
 import LabWorksPage from './pages/LabWorksPage';
-import SupportModal from './components/SupportModal';
-import './style/fonts.css';
-import './style/global.css';
 import SupportAdminPage from './components/SupportAdminPage';
 import { Comments } from './components/Comments';
-// Данные для новостей и карточек "О компании"
-import { newsData, aboutCardsData } from './constants/data';
+import NotFoundPage from './pages/NotFoundPage';
+import { Preloader } from './components/Preloader';
+import Game from './components/Game';
 
+// Страницы курсов
+import CoursesPage from './pages/CoursesPage';
+import CourseDetailPage from './pages/CourseDetailPage';
+
+// Данные
+import { newsData, aboutCardsData, courses } from './constants/data';
+
+// Стили
+import './style/fonts.css';
+import './style/global.css';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Preloader hidden={!loading} />;
+
   return (
-      <>
-      <Header /> {/* Шапка сайта */}
+    <>
+      {/* Модальное окно согласия на обработку персональных данных */}
+      <ConsentModal />
+
+      <Header />
       <Routes>
+        {/* Главная страница */}
         <Route
           path="/"
           element={
             <>
-              <HeroSection 
-                title="Добро пожаловать в наше приложение" 
-                subtitle="Создайте свою виртуальную сеть прямо сейчас!" 
-                buttonText="Начать"
-                  />   
-                
+              <section className="hero">
+                <div className="container">
+                  <h1>Добро пожаловать в наше приложение</h1>
+                  <p>Создайте свою виртуальную сеть прямо сейчас!</p>
+                  <Link to="/auth" className="btn">Начать</Link>
+                </div>
+              </section>
+
               <section id="news" className="news">
                 <div className="container">
                   <h2>Новости</h2>
@@ -49,10 +76,9 @@ function App() {
                   <h2>О компании</h2>
                   <div className="about-content">
                     <div className="about-text">
-                      <p>Наша компания разрабатывает инновационное приложение для геймификации обучения компьютерным и локальным сетям. 
-                        С помощью увлекательных игровых механик, интерактивных заданий и наглядных симуляций мы превращаем сложные технические темы в захватывающий образовательный опыт. 
-                        Приложение подходит как для студентов, так и для IT-специалистов, помогая им легко освоить основы сетевых технологий, 
-                        протоколы передачи данных и принципы работы локальных сетей в увлекательной форме. Учитесь с интересом и достигайте новых уровней мастерства!</p>
+                      <p>
+                        Наша компания разрабатывает инновационное приложение...
+                      </p>
                     </div>
                     <div className="about-cards">
                       {aboutCardsData.map((card, index) => (
@@ -65,25 +91,25 @@ function App() {
             </>
           }
         />
-
-        {/* Страница авторизации */}
+        
+        {/* Остальные страницы */}
         <Route path="/auth" element={<AuthPage />} />
-
-        {/* Страница профиля */}
         <Route path="/profile" element={<ProfilePage />} />
-<Route path="/comments" element={<Comments />} />
-        {/* Страница профиля преподавателя */}
+        <Route path="/comments" element={<Comments />} />
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
-
-        {/* Страница с лабораторными работами */}
         <Route path="/lab-works" element={<LabWorksPage />} />
         <Route path="/admin" element={<SupportAdminPage />} />
+        <Route path="/courses" element={<CoursesPage courses={courses} />} />
+        <Route path="/courses/:id" element={<CourseDetailPage courses={courses} />} />
+        <Route path="/game" element={<Game />} />
+
+        {/* Catch-all маршрут для несуществующих страниц */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
-          <SupportModal />
-
-      <Footer /> {/* Подвал сайта */}
-      </>
+      <SupportModal />
+      <Footer />
+    </>
   );
 }
 

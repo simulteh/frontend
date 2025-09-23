@@ -1,0 +1,55 @@
+.weather-widget {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #4864EC, #6A82FB);
+  padding: 16px 24px;
+  border-radius: 16px;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(72, 100, 236, 0.25);
+  max-width: 320px;
+  margin: 20px auto;
+  font-family: 'Montserrat', sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weather-widget:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(72, 100, 236, 0.35);
+}
+
+.weather-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.weather-city {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.weather-temp {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.weather-desc {
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+/* Сообщения об ошибке и загрузке */
+.weather-error, .weather-loading {
+  color: #4864EC;
+  font-weight: 600;
+  text-align: center;
+  margin: 10px 0;
+}
