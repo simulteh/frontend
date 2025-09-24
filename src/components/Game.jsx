@@ -1,19 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
-import styles from './Game.module.css'
 
-export default function Game() {
-    const { unityProvider } = useUnityContext({
-        loaderUrl: "/NetGenius/KeysQuiz.loader.js",
-        dataUrl: "/NetGenius/KeysQuiz.data",
-        frameworkUrl: "/NetGenius/KeysQuiz.framework.js",
-        codeUrl: "/NetGenius/KeysQuiz.wasm",
-    });
+function Game() {
+  const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
+    loaderUrl: "/NetGenius/BuildNetGenius.loader.js",
+    dataUrl: "/NetGenius/BuildNetGenius.data",
+    frameworkUrl: "/NetGenius/BuildNetGenius.framework.js",
+    codeUrl: "/NetGenius/BuildNetGenius.wasm",
+  });
 
-    return (
-        <div className={styles.gameWindow}>
-            <Unity unityProvider={unityProvider} style={{ width: 1920, height: 1080 }} />
-        </div>
-    );
+  return (
+    <Fragment>
+      {!isLoaded && (
+        <p>Loading Application... {Math.round(loadingProgression * 100)}%</p>
+      )}
+      <Unity
+        unityProvider={unityProvider}
+        style={{ visibility: isLoaded ? "visible" : "hidden", width: "90%", height: "90%" }}
+      />
+    </Fragment>
+  );
 }
+
+export default Game;
