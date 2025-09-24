@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 export const Header = () => {
   const location = useLocation();
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    // проверяем, есть ли токен
+    const token = localStorage.getItem('token');
+    setIsAuth(!!token);
+  }, [location]); // пересчитываем при изменении маршрута
 
   const scrollToSection = (id) => (e) => {
     e.preventDefault();
     if (location.pathname !== '/') {
-      // Если мы не на главной, переходим на главную, потом скроллим
       window.location.href = `/#${id}`;
       return;
     }
@@ -38,8 +44,13 @@ export const Header = () => {
             </ul>
           </nav>
         </div>
+
         <div className="right-section">
-          <Link to="/auth" className="btn">Войти</Link>
+          {isAuth ? (
+            <Link to="/profile" className="btn">Личный кабинет</Link>
+          ) : (
+            <Link to="/auth" className="btn">Войти</Link>
+          )}
         </div>
       </div>
     </header>

@@ -7,7 +7,7 @@ export const Footer = () => (
             <a href="/privacy-policy" className="privacy-link">
                 Политика конфиденциальности
             </a>
-            <p className="copyright">&copy; 2025 Netlink Builder. Все права защищены.</p>
+            <p className="copyright">&copy; Симултех.</p>
             <a 
                 href="https://fasie.ru/"
                 target="_blank"
