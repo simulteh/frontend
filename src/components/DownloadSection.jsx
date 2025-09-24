@@ -6,7 +6,7 @@ const DownloadSection = () => {
     <div className="download-section">
       <h3>NetGenius</h3>
       <a href="app.exe" className="btn">Скачать для Windows</a>
-      <a href="https://app.com" className="btn">Открыть в браузере</a>
+      <a href="http://localhost:3000/game" className="btn">Открыть в браузере</a>
     </div>
   );
 };

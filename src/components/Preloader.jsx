@@ -1,6 +1,6 @@
 import React from 'react';
 import '../style/preLoader.css';
-import spinner from '../assets/images/spinner.svg'; // вставь свой спиннер
+import spinner from '../assets/images/spinner.png'; // вставь свой спиннер
 
 export const Preloader = ({ hidden }) => (
   <div className={`preloader ${hidden ? 'hidden' : ''}`}>
