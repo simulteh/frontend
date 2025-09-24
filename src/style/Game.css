@@ -73,10 +73,6 @@
   border: 3px solid rgba(255, 255, 255, 0.1);
 }
 
-.unity-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-}
 
 /* Кнопка полноэкранного режима НАД игрой */
 .fullscreen-btn {
