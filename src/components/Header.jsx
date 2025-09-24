@@ -41,6 +41,9 @@ export const Header = () => {
               <li>
                 <Link to="/courses">Курсы</Link>
               </li>
+              <li>
+                <Link to="/game">Игра</Link>
+              </li>
             </ul>
           </nav>
         </div>
