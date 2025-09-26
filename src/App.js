@@ -18,6 +18,8 @@ import { Comments } from './components/Comments';
 import NotFoundPage from './pages/NotFoundPage';
 import { Preloader } from './components/Preloader';
 import Game from './components/Game';
+import ProtectedRoute from './components/ProtectedRoute';
+import ConstructorPage from './pages/ConstructorPage';
 
 // Страницы курсов
 import CoursesPage from './pages/CoursesPage';
@@ -92,9 +94,29 @@ function App() {
           }
         />
         
-        {/* Остальные страницы */}
+        {/* Страница авторизации */}
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        
+        {/* Защищенные маршруты */}
+        <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          } 
+        />
+        
+        <Route 
+          path="/construct" 
+          element={
+            <ProtectedRoute>
+              <ConstructorPage />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Остальные страницы */}
         <Route path="/comments" element={<Comments />} />
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
         <Route path="/lab-works" element={<LabWorksPage />} />
