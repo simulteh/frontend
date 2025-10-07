@@ -159,6 +159,51 @@ header .container {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(72, 100, 236, 0.3);
 }
+.favicon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.favicon-link {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
+
+.favicon-link:hover {
+  transform: scale(1.05);
+}
+
+.favicon-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.favicon-image:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.click-me-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.favicon-link:hover + .click-me-text {
+  color: #4864EC;
+  font-weight: 600;
+}
 
 /* News Section - Sophisticated */
 .news {

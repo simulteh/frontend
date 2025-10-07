@@ -28,6 +28,9 @@ import CourseDetailPage from './pages/CourseDetailPage';
 // Данные
 import { newsData, aboutCardsData, courses } from './constants/data';
 
+// Импорт картинки
+import faviconImage from './assets/images/favicon.jpg';
+
 // Стили
 import './style/fonts.css';
 import './style/global.css';
@@ -58,7 +61,16 @@ function App() {
                 <div className="container">
                   <h1>Добро пожаловать в наше приложение</h1>
                   <p>Создайте свою виртуальную сеть прямо сейчас!</p>
-                  <Link to="/auth" className="btn">Начать</Link>
+                  <div className="favicon-container">
+                    <Link to="/game" className="favicon-link">
+                      <img 
+                        src={faviconImage} 
+                        alt="Начать игру" 
+                        className="favicon-image"
+                      />
+                    </Link>
+                    <p className="click-me-text">Нажми меня!</p>
+                  </div>
                 </div>
               </section>
 
@@ -94,10 +106,8 @@ function App() {
           }
         />
         
-        {/* Страница авторизации */}
+        {/* Остальные маршруты остаются без изменений */}
         <Route path="/auth" element={<AuthPage />} />
-        
-        {/* Защищенные маршруты */}
         <Route 
           path="/profile" 
           element={
@@ -106,7 +116,6 @@ function App() {
             </ProtectedRoute>
           } 
         />
-        
         <Route 
           path="/construct" 
           element={
@@ -115,8 +124,6 @@ function App() {
             </ProtectedRoute>
           } 
         />
-        
-        {/* Остальные страницы */}
         <Route path="/comments" element={<Comments />} />
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
         <Route path="/lab-works" element={<LabWorksPage />} />
@@ -124,8 +131,6 @@ function App() {
         <Route path="/courses" element={<CoursesPage courses={courses} />} />
         <Route path="/courses/:id" element={<CourseDetailPage courses={courses} />} />
         <Route path="/game" element={<Game />} />
-
-        {/* Catch-all маршрут для несуществующих страниц */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
