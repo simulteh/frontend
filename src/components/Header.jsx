@@ -42,7 +42,7 @@ export const Header = () => {
                 <Link to="/courses">Курсы</Link>
               </li>
               <li>
-                <Link to="/game">Игра</Link>
+                <Link to="/game">Игра NetGenius</Link>
               </li>
               {/* Показываем кнопку Конструктор только для авторизованных пользователей */}
               {isAuth && (

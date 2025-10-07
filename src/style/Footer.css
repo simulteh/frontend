@@ -1,0 +1,174 @@
+/* Footer.css - Симултех посередине, логотипы и текст слева */
+
+.footer {
+  background: #2c3e50;
+  color: #ffffff;
+  padding: 40px 0;
+  border-top: 3px solid #3498db;
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 40px;
+  min-height: 80px;
+}
+
+/* Левая часть - логотипы и текст */
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  justify-self: start;
+}
+
+.footer-logos {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo {
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.logo-fsin {
+  height: 40px;
+  width: auto;
+}
+
+.logo-putp {
+  height: 50px;
+  width: auto;
+}
+
+.support-text {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #ecf0f1;
+  margin: 0;
+  font-weight: 300;
+  max-width: 600px;
+}
+
+/* Центр - копирайт */
+.footer-copyright {
+  grid-column: 2;
+  text-align: center;
+}
+
+.copyright1 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ecf0f1;
+  white-space: nowrap;
+}
+
+/* Адаптивность для планшетов */
+@media (max-width: 1024px) {
+  .footer-content {
+    gap: 30px;
+  }
+  
+  .footer-left {
+    gap: 20px;
+  }
+  
+  .support-text {
+    font-size: 11px;
+    max-width: 500px;
+  }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 0;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    text-align: center;
+    min-height: auto;
+  }
+  
+  .footer-left {
+    grid-column: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    order: 1;
+    justify-self: center;
+  }
+  
+  .footer-copyright {
+    grid-column: 1;
+    order: 2;
+  }
+  
+  .support-text {
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+  
+  .footer-logos {
+    justify-content: center;
+    gap: 25px;
+  }
+  
+  .logo-fsin {
+    height: 70px;
+  }
+  
+  .logo-putp {
+    height: 170px;
+  }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+  .footer {
+    padding: 25px 0;
+  }
+  
+  .footer-content {
+    padding: 0 15px;
+    gap: 20px;
+  }
+  
+  .support-text {
+    font-size: 10px;
+  }
+  
+  .footer-logos {
+    gap: 20px;
+  }
+  
+  .logo-fsin {
+    height: 30px;
+  }
+  
+  .logo-putp {
+    height: 40px;
+  }
+  
+  .copyright {
+    font-size: 14px;
+  }
+}
