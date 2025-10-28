@@ -5,7 +5,6 @@ import '../style/ConsentModal.css';
 const ConsentModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [policyText, setPolicyText] = useState('');
 
   useEffect(() => {
     // Проверяем, было ли согласие
@@ -13,12 +12,6 @@ const ConsentModal = () => {
     if (!consentGiven) {
       setIsOpen(true);
     }
-
-    // Загружаем текст политики из public/policy.txt
-    fetch('/policy.txt')
-      .then((res) => res.text())
-      .then((text) => setPolicyText(text))
-      .catch((err) => console.error('Ошибка загрузки политики:', err));
   }, []);
 
   const handleAccept = () => {
@@ -36,14 +29,7 @@ const ConsentModal = () => {
     <div className="modal-overlay">
       <div className="modal">
         <h2>Политика обработки персональных данных</h2>
-        <div className="policy-text">
-          {policyText ? (
-            <pre>{policyText}</pre>
-          ) : (
-            <p>Загрузка политики...</p>
-          )}
-        </div>
-
+        
         <div className="checkbox-group">
           <input
             type="checkbox"
@@ -52,7 +38,15 @@ const ConsentModal = () => {
             onChange={() => setIsChecked(!isChecked)}
           />
           <label htmlFor="consent">
-            Да, я согласен с политикой обработки персональных данных
+            Да, я согласен с{' '}
+            <a 
+              href="/policy.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="policy-link"
+            >
+              политикой обработки персональных данных
+            </a>
           </label>
         </div>
 
