@@ -119,9 +119,7 @@ function App() {
         <Route 
           path="/construct" 
           element={
-            <ProtectedRoute>
               <ConstructorPage />
-            </ProtectedRoute>
           } 
         />
         <Route path="/comments" element={<Comments />} />

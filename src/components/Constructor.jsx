@@ -1,34 +1,12 @@
-// components/Constructor.jsx
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import './Constructor.css';
 
 const Constructor = () => {
   const [inputValue, setInputValue] = useState('');
   const [outputText, setOutputText] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [checkingAuth, setCheckingAuth] = useState(true);
-  const navigate = useNavigate();
-
-  // Проверяем авторизацию при загрузке
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      sessionStorage.setItem('redirectAfterLogin', '/construct');
-      navigate('/auth');
-      return;
-    }
-    setIsAuthenticated(true);
-    setCheckingAuth(false);
-  }, [navigate]);
 
   const handleSubmit = async () => {
-    if (!isAuthenticated) {
-      navigate('/auth');
-      return;
-    }
-
     if (!inputValue.trim()) {
       setOutputText('Введите название дисциплины!');
       return;
@@ -63,38 +41,11 @@ const Constructor = () => {
     }
   };
 
-  if (checkingAuth) {
-    return (
-      <div className="constructor-container">
-        <div className="loading-auth">
-          <p>Проверка авторизации...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return (
-      <div className="constructor-container">
-        <div className="auth-required">
-          <h2>🔐 Доступ запрещён</h2>
-          <p>Для доступа к конструктору необходимо авторизоваться</p>
-          <button onClick={() => navigate('/auth')} className="btn auth-btn">
-            Войти в систему
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="constructor-container">
       <div className="constructor-header">
         <h2>Умный конструктор</h2>
         <p>Введите название дисциплины для получения списка литературы</p>
-        <div className="user-info">
-          ✅ Вы авторизованы как: {localStorage.getItem('email') || 'Пользователь'}
-        </div>
       </div>
 
       <div className="constructor-input-section">

@@ -44,12 +44,9 @@ export const Header = () => {
               <li>
                 <Link to="/game">Игра NetGenius</Link>
               </li>
-              {/* Показываем кнопку Конструктор только для авторизованных пользователей */}
-              {isAuth && (
                 <li>
                   <Link to="/construct">Конструктор</Link>
                 </li>
-              )}
             </ul>
           </nav>
         </div>
