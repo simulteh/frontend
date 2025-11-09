@@ -24,6 +24,15 @@ export const Footer = () => (
         </p>
       </div>
 
+      <div className="footer-center">
+        <div className="footer-contact">
+          <a href="mailto:simulteh@yandex.ru" className="contact-email">
+            simulteh@yandex.ru
+          </a>
+          <span className="contact-label">Обратная связь</span>
+        </div>
+      </div>
+
       <div className="footer-copyright">
         <span className="copyright1">© Симултех</span>
       </div>

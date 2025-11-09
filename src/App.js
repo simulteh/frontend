@@ -20,6 +20,11 @@ import { Preloader } from './components/Preloader';
 import Game from './components/Game';
 import ProtectedRoute from './components/ProtectedRoute';
 import ConstructorPage from './pages/ConstructorPage';
+import ConfirmEmailPage from './pages/ConfirmEmailPage';
+
+// Страницы восстановления пароля - ДОБАВЬТЕ ЭТИ ИМПОРТЫ
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 // Страницы курсов
 import CoursesPage from './pages/CoursesPage';
@@ -106,8 +111,14 @@ function App() {
           }
         />
         
-        {/* Остальные маршруты остаются без изменений */}
+        {/* Маршруты аутентификации */}
         <Route path="/auth" element={<AuthPage />} />
+        
+        {/* Маршруты восстановления пароля - ДОБАВЬТЕ ЭТИ ДВА МАРШРУТА */}
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        
+        {/* Защищенные маршруты */}
         <Route 
           path="/profile" 
           element={
@@ -122,6 +133,8 @@ function App() {
               <ConstructorPage />
           } 
         />
+        
+        {/* Остальные маршруты */}
         <Route path="/comments" element={<Comments />} />
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
         <Route path="/lab-works" element={<LabWorksPage />} />
@@ -130,6 +143,9 @@ function App() {
         <Route path="/courses/:id" element={<CourseDetailPage courses={courses} />} />
         <Route path="/game" element={<Game />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/confirm-email" element={<ConfirmEmailPage />} />
       </Routes>
 
       <SupportModal />

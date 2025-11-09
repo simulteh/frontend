@@ -11,18 +11,6 @@ export const Header = () => {
     setIsAuth(!!token);
   }, [location]); // пересчитываем при изменении маршрута
 
-  const scrollToSection = (id) => (e) => {
-    e.preventDefault();
-    if (location.pathname !== '/') {
-      window.location.href = `/#${id}`;
-      return;
-    }
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <header>
       <div className="container">
@@ -33,20 +21,20 @@ export const Header = () => {
           <nav>
             <ul>
               <li>
-                <Link to="/#news" onClick={scrollToSection('news')}>Новости</Link>
-              </li>
-              <li>
-                <Link to="/#about" onClick={scrollToSection('about')}>О компании</Link>
+                <Link to="/game">Игра NetGenius</Link>
               </li>
               <li>
                 <Link to="/courses">Курсы</Link>
               </li>
               <li>
-                <Link to="/game">Игра NetGenius</Link>
+                <Link to="/construct">Конструктор</Link>
               </li>
-                <li>
-                  <Link to="/construct">Конструктор</Link>
-                </li>
+              <li>
+                <Link to="/update">Обновления</Link>
+              </li>
+              <li>
+                <Link to="/partner">Партнеры</Link>
+              </li>
             </ul>
           </nav>
         </div>

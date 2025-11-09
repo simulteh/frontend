@@ -141,3 +141,181 @@ input:focus {
   cursor: pointer;
   font-size: 18px;
 }
+
+.auth-page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
+  padding: 2rem 0;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #718096;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.auth-message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.auth-message.success {
+  background: #F0FFF4;
+  color: #22543D;
+  border-color: #9AE6B4;
+}
+
+.auth-message.error {
+  background: #FED7D7;
+  color: #742A2A;
+  border-color: #FEB2B2;
+}
+
+/* Стили для страниц восстановления пароля */
+.forgot-password-text {
+  text-align: center;
+  color: #718096;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.password-requirements {
+  font-size: 0.875rem;
+  color: #718096;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* Улучшенные стили для группы пароля */
+.password-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.password-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #4A5568;
+}
+
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-wrapper input {
+  flex: 1;
+  padding-right: 50px;
+  padding: 12px 14px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1A202C;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.password-wrapper input:focus {
+  outline: none;
+  border-color: #4864EC;
+  box-shadow: 0 0 0 3px rgba(72, 100, 236, 0.1);
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-password:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Стили для ссылок */
+.auth-link {
+  color: #4864EC;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.auth-link:hover {
+  color: #3A56D4;
+  text-decoration: underline;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #4864EC;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  color: #3A56D4;
+  text-decoration: underline;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 480px) {
+  .auth-page-container {
+    padding: 1rem;
+  }
+  
+  .auth-container {
+    margin: 20px auto;
+    padding: 25px 20px;
+  }
+
+  .auth-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password:hover {
+  background-color: rgba(72, 100, 236, 0.1);
+}
+
