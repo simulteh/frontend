@@ -150,13 +150,6 @@
     border-radius: 50%;
 }
 
-.modal h2 {
-    color: #1A202C;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-    text-align: center;
-}
 
 .modal form {
     display: flex;

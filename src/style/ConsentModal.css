@@ -1,85 +1,125 @@
-/* src/style/ConsentModal.css */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  inset: 0;
+  background: rgba(26, 27, 31, 0.6); /* #1A1B1F */
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  box-sizing: border-box;
   z-index: 9999;
 }
 
 .modal {
-  background: #fff;
-  padding: 25px 35px;
-  border-radius: 12px;
-  width: 90vw;
-  max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
+  background: #FAFAFA;
+  padding: 48px 56px;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 640px;
   text-align: center;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  box-sizing: border-box;
-  position: relative;
-  z-index: 10000;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 32px;
+  color: #1A1B1F;
+  margin-bottom: 32px;
+  line-height: 1.2;
 }
 
 .checkbox-group {
+  margin-bottom: 36px;
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custom-checkbox {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  margin: 20px 0;
+  gap: 14px;
+  cursor: pointer;
   text-align: left;
 }
 
-.checkbox-group label {
-  flex: 1;
-  cursor: pointer;
-  margin: 0;
-  line-height: 1.4;
+.custom-checkbox input {
+  display: none;
 }
 
-.checkbox-group input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  margin: 0;
-  cursor: pointer;
-  margin-top: 2px;
+/* чекбокс */
+.checkmark {
+  min-width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid #C4C4C4; /* ← изменили цвет */
+  background: #FFFFFF;
+  position: relative;
+  transition: 0.2s;
+}
+
+/* состояние checked */
+.custom-checkbox input:checked + .checkmark {
+  background: #4361EE;
+  border-color: #4361EE;
+}
+
+.custom-checkbox input:checked + .checkmark::after {
+  content: "✔";
+  position: absolute;
+  top: -1px;
+  left: 4px;
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+.checkbox-text {
+  font-size: 16px;
+  color: #606161;
+  line-height: 1.5;
 }
 
 .policy-link {
-  color: #007bff;
+  color: #4361EE;
+  font-weight: 600;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
 }
 
 .policy-link:hover {
-  color: #0056b3;
   text-decoration: underline;
 }
 
 .btn {
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 12px 30px;
+  background: #4361EE;
+  color: #FFFFFF;
+  padding: 14px 42px;
+  border-radius: 14px;
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  width: auto;
-  text-align: center;
   font-size: 16px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.btn:hover {
-  background-color: #0056b3;
+.btn:hover:not(:disabled) {
+  background: #3A52CC;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(67, 97, 238, 0.35);
+}
+
+.btn:disabled {
+  background: #C4C4C4;
+  cursor: not-allowed;
+  box-shadow: none;
 }

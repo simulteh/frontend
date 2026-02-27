@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileInfo from '../components/ProfileInfo';
 import DownloadSection from '../components/DownloadSection';
 import GradesTable from '../components/GradesTable';
-import '../ProfilePage.css'; // Обновленный путь к CSS файлу
+import '../ProfilePage.css'; 
 import WeatherWidget from '../components/WeatherWidget';
 
 const ProfilePage = () => {

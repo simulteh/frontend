@@ -1,40 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { ReactComponent as LogoSvg } from '../assets/images/logosim.svg'; // исправленный путь
 
 export const Header = () => {
   const location = useLocation();
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    // проверяем, есть ли токен
     const token = localStorage.getItem('token');
     setIsAuth(!!token);
-  }, [location]); // пересчитываем при изменении маршрута
+  }, [location]);
 
   return (
     <header>
       <div className="container">
         <div className="left-section">
           <Link to="/" className="logo">
-            <h1>Симултех</h1>
+            <LogoSvg className="logo-svg" />
           </Link>
           <nav>
             <ul>
-              <li>
-                <Link to="/game">Игра NetGenius</Link>
-              </li>
-              <li>
-                <Link to="/courses">Курсы</Link>
-              </li>
-              <li>
-                <Link to="/construct">Конструктор</Link>
-              </li>
-              <li>
-                <Link to="/update">Обновления</Link>
-              </li>
-              <li>
-                <Link to="/partner">Партнеры</Link>
-              </li>
+              <li><Link to="/game">Игра NetGenius</Link></li>
+              <li><Link to="/courses">Курсы</Link></li>
+              <li><Link to="/construct">Конструктор</Link></li>
+              <li><Link to="/update">Обновления</Link></li>
+              <li><Link to="/partner">Партнеры</Link></li>
             </ul>
           </nav>
         </div>

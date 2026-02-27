@@ -19,35 +19,36 @@ const ProfileInfo = () => {
 
   // Загружаем профиль
   useEffect(() => {
-  const fetchProfile = async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/auth');
-      return;
-    }
+    const fetchProfile = async () => {
+      const token = localStorage.getItem('token');
+      // ЗАКОММЕНТИРОВАН РЕДИРЕКТ ДЛЯ НЕАВТОРИЗОВАННЫХ ПОЛЬЗОВАТЕЛЕЙ
+      // if (!token) {
+      //   navigate('/auth');
+      //   return;
+      // }
 
-    try {
-      const res = await axios.get(`${API_URL}/profile/me?token=${token}`)
+      try {
+        const res = await axios.get(`${API_URL}/profile/me?token=${token}`)
 
-      console.log(res);
+        console.log(res);
 
-      setUser({
-        firstName: res.data.firstName || '',
-        lastName: res.data.lastName || '',
-        middleName: res.data.middleName || '',
-        email: res.data.email || '',
-        password: ''
-      });
-    } catch (err) {
-      console.error("Ошибка загрузки профиля:", err);
-      setMessage('Ошибка загрузки данных');
-    } finally {
-      setLoading(false);
-    }
-  };
+        setUser({
+          firstName: res.data.firstName || '',
+          lastName: res.data.lastName || '',
+          middleName: res.data.middleName || '',
+          email: res.data.email || '',
+          password: ''
+        });
+      } catch (err) {
+        console.error("Ошибка загрузки профиля:", err);
+        setMessage('Ошибка загрузки данных');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchProfile();
-}, [navigate]);
+    fetchProfile();
+  }, [navigate]);
 
   // Сохранение изменений
   const handleSubmit = async (e) => {

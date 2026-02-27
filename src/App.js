@@ -18,11 +18,10 @@ import { Comments } from './components/Comments';
 import NotFoundPage from './pages/NotFoundPage';
 import { Preloader } from './components/Preloader';
 import Game from './components/Game';
-import ProtectedRoute from './components/ProtectedRoute';
 import ConstructorPage from './pages/ConstructorPage';
 import ConfirmEmailPage from './pages/ConfirmEmailPage';
 
-// Страницы восстановления пароля - ДОБАВЬТЕ ЭТИ ИМПОРТЫ
+// Страницы восстановления пароля
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 
@@ -96,7 +95,11 @@ function App() {
                   <div className="about-content">
                     <div className="about-text">
                       <p>
-                        Наша компания разрабатывает инновационное приложение...
+                        Компания Симултех основана в 2024 году и создаёт образовательные продукты с геймификацией, которые делают обучение увлекательным, эффективным и мотивирующим. 
+                        Мы превращаем сложные знания в интерактивный опыт, позволяя пользователям осваивать новые навыки легко и с удовольствием.
+                        <br />
+                        Сегодня у нас есть компьютерная игра, которая способствует обучению через игру. А впереди — целая линейка продуктов, которые расширят возможности интерактивного обучения в разных сферах. 
+                        Мы делаем образование доступным, захватывающим и результативным для каждого.
                       </p>
                     </div>
                     <div className="about-cards">
@@ -114,23 +117,13 @@ function App() {
         {/* Маршруты аутентификации */}
         <Route path="/auth" element={<AuthPage />} />
         
-        {/* Маршруты восстановления пароля - ДОБАВЬТЕ ЭТИ ДВА МАРШРУТА */}
+        {/* Маршруты восстановления пароля */}
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
-        
-        {/* Защищенные маршруты */}
-        <Route 
-          path="/profile" 
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          } 
-        />
         <Route 
           path="/construct" 
           element={
-              <ConstructorPage />
+            <ConstructorPage />
           } 
         />
         
@@ -142,10 +135,9 @@ function App() {
         <Route path="/courses" element={<CoursesPage courses={courses} />} />
         <Route path="/courses/:id" element={<CourseDetailPage courses={courses} />} />
         <Route path="/game" element={<Game />} />
-        <Route path="*" element={<NotFoundPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/confirm-email" element={<ConfirmEmailPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
 
       <SupportModal />
