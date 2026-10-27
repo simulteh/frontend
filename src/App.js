@@ -39,6 +39,8 @@ import faviconImage from './assets/images/favicon.jpg';
 import './style/fonts.css';
 import './style/global.css';
 
+const FEEDBACK_FORM_URL = 'https://forms.yandex.ru/u/6aa12364493639304c1c5ef1/';
+
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -74,6 +76,18 @@ function App() {
                       />
                     </Link>
                     <p className="click-me-text">Нажми меня!</p>
+                  </div>
+
+                  {/* Кнопка обратной связи */}
+                  <div className="feedback-container">
+                    <a
+                      href={FEEDBACK_FORM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="feedback-btn"
+                    >
+                      Обратная связь
+                    </a>
                   </div>
                 </div>
               </section>

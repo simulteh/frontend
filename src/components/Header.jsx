@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ReactComponent as LogoSvg } from '../assets/images/logosim.svg'; // исправленный путь
+import { ReactComponent as LogoSvg } from '../assets/images/logosim.svg';
+
+const FEEDBACK_FORM_URL = 'https://forms.yandex.ru/u/6aa12364493639304c1c5ef1/';
 
 export const Header = () => {
   const location = useLocation();
@@ -23,7 +25,15 @@ export const Header = () => {
               <li><Link to="/game">Игра NetGenius</Link></li>
               <li><Link to="/courses">Курсы</Link></li>
               <li><Link to="/construct">Конструктор</Link></li>
-              <li><Link to="/update">Обновления</Link></li>
+              <li>
+                <a
+                  href={FEEDBACK_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Обратная связь
+                </a>
+              </li>
               <li><Link to="/partner">Партнеры</Link></li>
             </ul>
           </nav>

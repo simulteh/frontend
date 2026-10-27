@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "http://212.67.12.82:8080";
+const API_URL = "/api";
 
 class AuthService {
   // Запрос на сброс пароля
