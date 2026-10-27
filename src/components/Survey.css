@@ -1,67 +1,62 @@
-.survey {
-  background: #F7FAFC;
-  padding: 24px 20px;
-  border-radius: 12px;
-  border: 1px solid #E2E8F0;
-  margin: 24px 0;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 2px 8px rgba(72, 100, 236, 0.1);
+/* Опрос на странице курса (карточка .cd-card — в CourseDetailPage.css) */
+
+.sv-question {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  border: none;
 }
 
-.survey h3 {
-  font-size: 1.5rem;
+.sv-question legend {
+  margin-bottom: 0.75rem;
+  padding: 0;
   font-weight: 600;
   color: #1A202C;
-  text-align: center;
-  margin-bottom: 20px;
 }
 
-.survey-question {
-  margin-bottom: 18px;
-}
-
-.question-text {
-  font-weight: 500;
-  margin-bottom: 8px;
-  color: #2D3748;
-}
-
-.survey-options {
+.sv-options {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.survey-option {
-  display: flex;
+.sv-option {
+  display: inline-flex;
   align-items: center;
-  font-size: 1rem;
-  color: #4A5568;
+  gap: 8px;
+  padding: 0.6rem 1rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 999px;
+  background: #fff;
+  color: #2D3748;
+  font-size: 0.95rem;
   cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
-.survey-option input {
-  margin-right: 10px;
+.sv-option:hover {
+  border-color: #C3CDFB;
+}
+
+.sv-option input {
   accent-color: #4864EC;
+  margin: 0;
 }
 
-.survey-submit {
-  background: #4864EC;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 18px;
+.sv-option-checked {
+  border-color: #4864EC;
+  background: rgba(72, 100, 236, 0.06);
+  color: #3A56D4;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: block;
-  margin: 16px auto 0 auto;
 }
 
-.survey-submit:hover {
-  background: #3A56D4;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(72, 100, 236, 0.2);
+.sv-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.sv-thanks {
+  color: #3BB13B;
+  font-weight: 600;
 }

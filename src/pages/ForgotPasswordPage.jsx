@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import authService from '../services/authService';
+import { errorText } from '../services/api';
 import '../components/AuthForm.css';
 
 const ForgotPasswordPage = () => {
@@ -23,11 +24,12 @@ const ForgotPasswordPage = () => {
 
     try {
       await authService.requestPasswordReset(email);
-      setMessage('Ссылка для сброса пароля отправлена на вашу почту');
+      // Ответ одинаковый для любого адреса — не сообщаем, найден ли пользователь
+      setMessage('Если аккаунт с таким email существует, мы отправили на него ссылку для сброса пароля');
       setEmail('');
     } catch (err) {
       console.error('Ошибка при запросе сброса пароля:', err);
-      setError(err.response?.data?.message || 'Ошибка при отправке запроса');
+      setError(errorText(err, 'Ошибка при отправке запроса'));
     } finally {
       setIsLoading(false);
     }

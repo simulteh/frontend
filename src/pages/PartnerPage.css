@@ -1,0 +1,450 @@
+/* Страница «Сотрудничество с вузами» */
+
+.pt-page {
+  color: #2D3748;
+  text-align: left;
+}
+
+.pt-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.pt-page h2 {
+  margin-bottom: 1.25rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #1A202C;
+}
+
+.pt-page p {
+  line-height: 1.65;
+}
+
+/* Кнопки */
+.pt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pt-btn-primary {
+  background: #4864EC;
+  color: #fff;
+}
+
+.pt-btn-primary:hover {
+  background: #3A56D4;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(72, 100, 236, 0.3);
+}
+
+.pt-btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.pt-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Первый экран */
+.pt-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0 5rem;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(72, 100, 236, 0.45), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(72, 100, 236, 0.2), transparent 40%),
+    #1A202C;
+  color: #fff;
+}
+
+/* Сетка точек — намёк на топологию сети */
+.pt-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to left, #000, transparent 70%);
+  -webkit-mask-image: linear-gradient(to left, #000, transparent 70%);
+  pointer-events: none;
+}
+
+.pt-hero .pt-container {
+  position: relative;
+  z-index: 1;
+}
+
+.pt-eyebrow {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid rgba(143, 162, 245, 0.4);
+  border-radius: 999px;
+  background: rgba(72, 100, 236, 0.15);
+  color: #C3CDFB;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.pt-hero h1 {
+  max-width: 760px;
+  margin-bottom: 1.25rem;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.pt-lead {
+  max-width: 680px;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #CBD5E0;
+}
+
+.pt-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Секции */
+.pt-section {
+  padding: 5rem 0;
+  background: #fff;
+}
+
+.pt-section-tinted {
+  background: #F7FAFC;
+}
+
+/* Чтобы при переходе по якорю заголовок не прятался под липкую шапку */
+#scheme,
+#start {
+  scroll-margin-top: 64px;
+}
+
+.pt-section > .pt-container > p,
+.pt-split p {
+  color: #4A5568;
+  font-size: 1.05rem;
+}
+
+.pt-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.pt-label {
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #718096;
+}
+
+.pt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+}
+
+.pt-chips li {
+  padding: 0.55rem 1rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 999px;
+  background: #F7FAFC;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #2D3748;
+}
+
+/* Модель сотрудничества */
+.pt-model {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 3.5rem;
+}
+
+.pt-model p {
+  color: #4A5568;
+  font-size: 1.05rem;
+}
+
+.pt-model-note {
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid #4864EC;
+  border-radius: 0 12px 12px 0;
+  background: rgba(72, 100, 236, 0.07);
+  color: #2D3748;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.pt-h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  color: #1A202C;
+}
+
+/* Шаги */
+.pt-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  list-style: none;
+}
+
+.pt-step {
+  padding: 1.5rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.pt-step:hover {
+  border-color: #C3CDFB;
+  box-shadow: 0 12px 28px rgba(26, 32, 44, 0.07);
+  transform: translateY(-2px);
+}
+
+.pt-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: #4864EC;
+  color: #fff;
+  font-weight: 700;
+}
+
+.pt-step h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: #1A202C;
+}
+
+.pt-step p {
+  font-size: 0.95rem;
+  color: #4A5568;
+}
+
+/* Что получает вуз */
+.pt-benefits {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin: 0.5rem 0 2.5rem;
+  list-style: none;
+}
+
+.pt-benefit {
+  padding: 1.5rem 1.25rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.pt-benefit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  background: #E6EAFD;
+  color: #4864EC;
+}
+
+.pt-benefit p {
+  font-size: 0.95rem;
+  color: #2D3748;
+}
+
+.pt-cards {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+}
+
+.pt-card {
+  padding: 2rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  background: #F7FAFC;
+}
+
+.pt-card h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  color: #1A202C;
+}
+
+.pt-card p {
+  color: #4A5568;
+}
+
+.pt-card-accent {
+  border-color: transparent;
+  background: linear-gradient(135deg, #4864EC, #3A56D4);
+}
+
+.pt-card-accent h3,
+.pt-card-accent p {
+  color: #fff;
+}
+
+/* Как начать — светлый блок с синим баннером заявки, чтобы не сливаться с тёмным футером */
+.pt-start {
+  padding: 5rem 0;
+  background: #F7FAFC;
+  border-top: 1px solid #E2E8F0;
+}
+
+.pt-start-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 2.5rem;
+  list-style: none;
+}
+
+.pt-start-steps li {
+  padding-top: 1rem;
+  border-top: 2px solid #C3CDFB;
+}
+
+.pt-start-steps p {
+  font-size: 0.95rem;
+  color: #4A5568;
+}
+
+.pt-cta {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 2.25rem 2.5rem;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.18), transparent 45%),
+    linear-gradient(135deg, #4864EC, #3A56D4);
+  box-shadow: 0 16px 40px rgba(72, 100, 236, 0.25);
+}
+
+.pt-cta-title {
+  margin-bottom: 0.35rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pt-cta p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.pt-cta p a {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* На синем баннере кнопка белая */
+.pt-cta .pt-btn-primary {
+  background: #fff;
+  color: #3A56D4;
+}
+
+.pt-cta .pt-btn-primary:hover {
+  background: #EEF1FE;
+  box-shadow: 0 8px 20px rgba(26, 32, 44, 0.2);
+}
+
+/* Адаптив */
+@media (max-width: 1024px) {
+  .pt-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pt-benefits {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pt-start-steps {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pt-container {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .pt-hero {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .pt-hero h1 {
+    font-size: 2rem;
+  }
+
+  .pt-lead {
+    font-size: 1rem;
+  }
+
+  .pt-page h2 {
+    font-size: 1.6rem;
+  }
+
+  .pt-section,
+  .pt-start {
+    padding: 3.5rem 0;
+  }
+
+  .pt-split,
+  .pt-model,
+  .pt-cards,
+  .pt-steps,
+  .pt-benefits,
+  .pt-start-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .pt-split {
+    gap: 24px;
+  }
+
+  .pt-cta {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+}

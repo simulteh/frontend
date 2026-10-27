@@ -15,7 +15,7 @@ export const Footer = () => (
             <img src={putpLogo} alt="Платформа университетского технологического предпринимательства" className="logo logo-putp" />
           </a>
         </div>
-        
+
         <p className="support-text">
           Проект создан при поддержке Федерального государственного бюджетного учреждения
           «Фонд содействия развитию малых форм предприятий в научно-технической сфере»
@@ -24,18 +24,28 @@ export const Footer = () => (
         </p>
       </div>
 
-      <div className="footer-center">
-        <div className="footer-contact">
-          <a href="mailto:simulteh@yandex.ru" className="contact-email">
-            simulteh@yandex.ru
-          </a>
-          <span className="contact-label">Обратная связь</span>
-        </div>
+      <div className="footer-contact">
+        <span className="contact-label">Обратная связь</span>
+        <a href="mailto:simulteh@yandex.ru" className="contact-email">
+          simulteh@yandex.ru
+        </a>
+        <a
+          href="https://vk.ru/simultech"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="contact-vk"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <rect width="24" height="24" rx="6" fill="#0077FF" />
+            <text x="12" y="16" textAnchor="middle" fontSize="10" fontWeight="800" fill="#FFFFFF">VK</text>
+          </svg>
+          Мы ВКонтакте
+        </a>
       </div>
+    </div>
 
-      <div className="footer-copyright">
-        <span className="copyright1">© Симултех</span>
-      </div>
+    <div className="footer-bottom">
+      <span className="copyright1">© Симултех</span>
     </div>
   </footer>
 );

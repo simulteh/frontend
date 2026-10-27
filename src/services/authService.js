@@ -1,38 +1,27 @@
-import axios from 'axios';
-
-const API_URL = "http://212.67.12.82:8080";
+import { publicApi } from './api';
 
 class AuthService {
-  // Запрос на сброс пароля
+  // Запрос на сброс пароля. Ответ одинаковый, есть такой адрес или нет
   async requestPasswordReset(email) {
-    const response = await axios.post(`${API_URL}/auth/forgot-password`, {
-      email
-    });
+    const response = await publicApi.post('/auth/forgot-password', { email });
     return response.data;
   }
 
-  // Сброс пароля с токеном
+  // Новый пароль по токену из письма
   async resetPassword(token, newPassword) {
-    const response = await axios.post(`${API_URL}/auth/reset-password`, {
-      token,
-      newPassword
-    });
+    const response = await publicApi.post('/auth/reset-password', { token, newPassword });
     return response.data;
   }
 
-  // Подтверждение email
+  // Подтверждение email по токену из письма
   async confirmEmail(token) {
-    const response = await axios.post(`${API_URL}/auth/confirm-email`, {
-      token
-    });
+    const response = await publicApi.post('/auth/confirm-email', { token });
     return response.data;
   }
 
-  // Повторная отправка подтверждения email
+  // Повторная отправка письма подтверждения
   async resendConfirmation(email) {
-    const response = await axios.post(`${API_URL}/auth/resend-confirmation`, {
-      email
-    });
+    const response = await publicApi.post('/auth/resend-confirmation', { email });
     return response.data;
   }
 }

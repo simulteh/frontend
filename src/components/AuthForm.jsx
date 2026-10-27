@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate, Link } from "react-router-dom"; // ДОБАВЬТЕ Link
+import { login, register, errorText } from "../services/api";
 import "./AuthForm.css";
-
-const API_URL = "http://212.67.12.82:8080"; // URL бэкенда
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -30,46 +28,38 @@ const AuthForm = () => {
       return;
     }
 
+    if (!isLogin && password.length < 6) {
+      setError("Пароль должен содержать минимум 6 символов");
+      return;
+    }
+
     setLoading(true);
 
     try {
       if (isLogin) {
-        const res = await axios.post(`${API_URL}/auth/sign-in`, {
-          email,
-          password,
-        });
-        console.log(res.data);
-        if (res.data) {
-          localStorage.setItem("token", res.data);
-          localStorage.setItem("email", email);
-          setSuccess("Успешный вход!");
-          navigate("/profile");
-        }
+        await login(email, password);
+        setSuccess("Успешный вход!");
+        // Возвращаем туда, куда пользователь шёл до входа
+        const redirect = sessionStorage.getItem("redirectAfterLogin");
+        sessionStorage.removeItem("redirectAfterLogin");
+        navigate(redirect || "/profile");
       } else {
-        const res = await axios.post(`${API_URL}/auth/sign-up`, {
-          firstName,
-          lastName,
-          middleName,
-          email,
-          password,
-        });
-        console.log(res.data);
-
-        if (res.data) {
-          setSuccess(res.data);
-        } else {
-          setSuccess("Регистрация успешна!");
-        }
+        await register({ firstName, lastName, middleName, email, password });
+        // Регистрация не выдаёт токены — дальше обычный вход
+        setSuccess("Регистрация прошла успешно. Мы отправили письмо для подтверждения почты — теперь войдите в аккаунт");
+        setIsLogin(true);
+        setPassword("");
+        setConfirmPassword("");
       }
     } catch (err) {
       console.error(err);
 
-      if (!isLogin && err.response?.status === 400) {
-        setError("Пользователь с таким email уже существует");
-      } else if (err.response?.status === 500) {
-        setError("Внутренняя ошибка сервера. Попробуйте позже.");
+      if (isLogin && err.response?.status === 401) {
+        setError("Неверный email или пароль");
+      } else if (!isLogin && err.response?.status === 400) {
+        setError(errorText(err, "Пользователь с таким email уже существует"));
       } else {
-        setError(err.response?.data || "Ошибка при отправке запроса");
+        setError(errorText(err, "Ошибка при отправке запроса"));
       }
     } finally {
       setLoading(false);

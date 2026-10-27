@@ -19,95 +19,6 @@ body {
     padding: 0 20px;
 }
 
-/* Header*/
-header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    padding: 1rem 0;
-    top: 0;
-    width: 100%;
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.left-section .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #1A202C;
-}
-
-.left-section .logo h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.left-section .logo:hover h1 {
-    color: #4864EC;
-}
-
-.left-section nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-}
-
-.left-section nav ul li a {
-    color: #4A5568;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 0.5rem 0;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.left-section nav ul li a:hover {
-    color: #4864EC;
-}
-
-.left-section nav ul li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #4864EC;
-    transition: width 0.3s ease;
-}
-
-.left-section nav ul li a:hover::after {
-    width: 100%;
-}
-
-.right-section .btn {
-    background: #4864EC;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    border: 1px solid #4864EC;
-}
-
-.right-section .btn:hover {
-    background: #3A56D4;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(72, 100, 236, 0.2);
-}
-
 /* Hero Section*/
 .hero {
     background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
@@ -226,6 +137,42 @@ header .container {
     height: 3px;
     background: #4864EC;
     border-radius: 2px;
+}
+
+.news-vk {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #F7FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.news-vk p {
+    margin-bottom: 1.5rem;
+    color: #4A5568;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.news-vk-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.5rem;
+    background: #0077FF;
+    color: #FFFFFF;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.news-vk-btn:hover {
+    background: #0066DD;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 119, 255, 0.25);
 }
 
 .news-grid {
@@ -402,61 +349,144 @@ header .container {
 }
 
 /* Responsive Design */
+/* ============ Планшеты и большие телефоны ============ */
 @media (max-width: 768px) {
     .container {
         padding: 0 1rem;
+        width: 100%;
     }
 
-    header .container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .left-section nav ul {
-        gap: 1rem;
+    /* ===== Hero ===== */
+    .hero {
+        /* 100vh ломается из-за адресной строки на мобильных */
+        min-height: auto;
+        padding: 4rem 0 3rem;
     }
 
     .hero h1 {
-        font-size: 2.25rem;
+        font-size: 2rem;
+        margin-bottom: 1rem;
     }
 
     .hero p {
-        font-size: 1.125rem;
-    }
-
-    .news, .about, .workflow {
-        padding: 4rem 0;
-    }
-
-    .news h2, .about h2 {
-        font-size: 2rem;
-    }
-
-    .news-grid, .about-cards {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .about-text p {
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 2rem;
+        font-size: 1rem;
+        margin-bottom: 1.75rem;
     }
 
     .hero .btn {
-        padding: 0.875rem 2rem;
+        padding: 0.85rem 1.75rem;
         font-size: 1rem;
+    }
+
+    /* ===== Favicon + feedback ===== */
+    .favicon-container {
+        margin-top: 1rem;
+    }
+
+    .favicon-image {
+        width: 90px;
+        height: 90px;
+    }
+
+    .feedback-container {
+        margin-top: 1rem;
+    }
+
+    .feedback-btn {
+        padding: 0.75rem 1.75rem;
+        font-size: 0.95rem;
+    }
+
+    /* ===== Секции ===== */
+    .news, .about, .workflow {
+        padding: 3.5rem 0;
     }
 
     .news h2, .about h2 {
         font-size: 1.75rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .news-grid, .about-cards {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .news-item img {
+        height: 180px;
+    }
+
+    .about-text p {
+        padding: 1.25rem;
+        font-size: 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
     }
 }
 
+/* ============ Маленькие телефоны ============ */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.875rem;
+    }
+
+    .hero {
+        padding: 3rem 0 2.5rem;
+    }
+
+    .hero h1 {
+        font-size: 1.65rem;
+        line-height: 1.25;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .hero .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .favicon-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .click-me-text {
+        font-size: 14px;
+    }
+
+    .feedback-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .news h2, .about h2 {
+        font-size: 1.5rem;
+    }
+
+    .news-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .news-item p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.4rem;
+    }
+
+}
 /* Utility Classes */
 .text-center {
     text-align: center;
@@ -474,7 +504,29 @@ header .container {
     border: 0;
 }
 
-.logo-svg {
-  width: 160px;
-  height: auto;
+/* Feedback button on hero */
+.feedback-container {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.feedback-btn {
+    background: transparent;
+    color: #4864EC;
+    padding: 0.75rem 2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 2px solid #4864EC;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.feedback-btn:hover {
+    background: #4864EC;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(72, 100, 236, 0.3);
 }

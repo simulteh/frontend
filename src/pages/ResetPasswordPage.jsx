@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import authService from '../services/authService';
+import { errorText } from '../services/api';
+import { clearSession } from '../services/session';
 import '../components/AuthForm.css';
 
 const ResetPasswordPage = () => {
@@ -48,6 +50,9 @@ const ResetPasswordPage = () => {
 
     try {
       await authService.resetPassword(token, newPassword);
+      // Сброс пароля завершает все сессии — выходим и здесь
+      clearSession();
+      window.history.replaceState(null, '', window.location.pathname);
       setMessage('Пароль успешно изменен! Перенаправление на страницу входа...');
       
       setTimeout(() => {
@@ -56,7 +61,10 @@ const ResetPasswordPage = () => {
       
     } catch (err) {
       console.error('Ошибка при сбросе пароля:', err);
-      setError(err.response?.data?.message || 'Ошибка при сбросе пароля. Ссылка может быть устаревшей.');
+      const status = err.response?.status;
+      setError(status === 400 || status === 404
+        ? 'Ссылка недействительна: срок её действия истёк или она уже использована. Запросите новую'
+        : errorText(err, 'Ошибка при сбросе пароля. Попробуйте позже'));
     } finally {
       setIsLoading(false);
     }

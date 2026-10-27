@@ -1,0 +1,655 @@
+/* Личный кабинет: профиль, группы преподавателя */
+
+.lk-page {
+  background: #F7FAFC;
+  min-height: 80vh;
+  padding: 40px 0 64px;
+  color: #1A202C;
+  text-align: left;
+}
+
+.lk-container {
+  width: 90%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.lk-container-wide {
+  width: 96%;
+  max-width: none;
+}
+
+.lk-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.lk-title {
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1A202C;
+  margin: 0 0 20px;
+}
+
+.lk-head .lk-title {
+  margin-bottom: 0;
+}
+
+.lk-state {
+  color: #718096;
+  margin: 24px 0;
+}
+
+.lk-message {
+  margin: 12px 0;
+  font-size: 0.9rem;
+}
+
+.lk-message-error {
+  color: #E53E3E;
+}
+
+.lk-message-ok {
+  color: #3BB13B;
+}
+
+.lk-hint {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #718096;
+}
+
+/* Вкладки */
+.lk-tabs {
+  border-bottom: 2px solid #E2E8F0;
+  margin: 12px 0 28px;
+}
+
+.lk-tab {
+  display: inline-block;
+  padding: 8px 0;
+  margin-bottom: -2px;
+  color: #718096;
+  font-weight: 500;
+}
+
+.lk-tab-active {
+  color: #4864EC;
+  border-bottom: 2px solid #4864EC;
+}
+
+/* Кнопки */
+.lk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lk-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.lk-btn-primary {
+  background: #4864EC;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(72, 100, 236, 0.3);
+}
+
+.lk-btn-primary:hover:not(:disabled) {
+  background: #3A56D4;
+}
+
+.lk-btn-outline {
+  background: #fff;
+  color: #4864EC;
+  border-color: #CBD5E0;
+}
+
+.lk-btn-outline:hover:not(:disabled) {
+  background: rgba(72, 100, 236, 0.08);
+  border-color: #4864EC;
+}
+
+.lk-btn-small {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+/* Поля */
+.lk-field {
+  margin-bottom: 18px;
+}
+
+.lk-field label,
+.lk-section-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1A202C;
+}
+
+.lk-input-wrap {
+  position: relative;
+}
+
+.lk-input-wrap input {
+  width: 100%;
+  padding: 12px 48px 12px 18px;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background: #fff;
+  color: #1A202C;
+  font-size: 1rem;
+  outline: none;
+}
+
+.lk-input-wrap input[readonly] {
+  color: #4A5568;
+  cursor: default;
+}
+
+.lk-input-wrap input:not([readonly]):focus {
+  border-color: #4864EC;
+}
+
+.lk-input-wrap input::placeholder {
+  color: #A0AEC0;
+}
+
+.lk-input-icon,
+.lk-input-action {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  display: flex;
+  color: #CBD5E0;
+}
+
+.lk-input-action {
+  background: none;
+  border: none;
+  padding: 4px;
+  right: 10px;
+  color: #4864EC;
+  cursor: pointer;
+}
+
+.lk-file {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px dashed #CBD5E0;
+  border-radius: 12px;
+  background: #F7FAFC;
+  color: #4A5568;
+  font-size: 0.9rem;
+}
+
+/* Профиль */
+.lk-profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 15%;
+}
+
+.lk-avatar {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: #E6EAFD;
+  color: #4864EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.lk-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lk-role-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 10px;
+}
+
+.lk-role-head .lk-section-label {
+  margin-bottom: 0;
+  font-size: 1.1rem;
+}
+
+/* Список групп */
+.lk-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  padding: 0 18px;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  color: #718096;
+}
+
+.lk-search input {
+  flex: 1;
+  padding: 14px 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #1A202C;
+}
+
+.lk-search input::placeholder {
+  color: #A0AEC0;
+}
+
+.lk-group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lk-group-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lk-group-card:hover {
+  border-color: #4864EC;
+  box-shadow: 0 4px 14px rgba(72, 100, 236, 0.15);
+}
+
+.lk-group-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1A202C;
+}
+
+.lk-group-org {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.lk-group-count {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #718096;
+}
+
+.lk-group-card-static:hover {
+  border-color: #E2E8F0;
+  box-shadow: none;
+}
+
+.lk-teacher {
+  text-align: right;
+  font-weight: 600;
+  color: #1A202C;
+}
+
+.lk-teacher span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #718096;
+}
+
+/* Оценки студента */
+.lk-subtitle {
+  font-size: 1.3rem;
+  color: #1A202C;
+  margin: 32px 0 12px;
+}
+
+.lk-subtitle:first-child {
+  margin-top: 8px;
+}
+
+.lk-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: #EDF2F7;
+  overflow: hidden;
+}
+
+.lk-bar div {
+  height: 100%;
+  border-radius: 4px;
+  background: #4864EC;
+}
+
+.lk-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.lk-stat {
+  padding: 18px 22px;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+}
+
+.lk-stat-label {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.lk-stat-value {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1A202C;
+}
+
+.lk-stat-value span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #718096;
+}
+
+.lk-grade-list {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+}
+
+.lk-grade {
+  display: grid;
+  grid-template-columns: 140px 1fr 110px;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 22px;
+  border-top: 1px solid #EDF2F7;
+}
+
+.lk-grade:first-child {
+  border-top: none;
+}
+
+.lk-grade-name {
+  font-weight: 600;
+  color: #1A202C;
+}
+
+.lk-grade-score {
+  text-align: right;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1A202C;
+}
+
+.lk-grade-score span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #718096;
+}
+
+.lk-grade-empty .lk-grade-name {
+  color: #A0AEC0;
+}
+
+.lk-grade-empty .lk-grade-score span {
+  color: #A0AEC0;
+}
+
+/* Страница группы */
+.lk-group-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.lk-group-head .lk-title {
+  margin-bottom: 4px;
+}
+
+.lk-back {
+  display: flex;
+  padding-top: 8px;
+  color: #4864EC;
+}
+
+.lk-group-subtitle {
+  font-size: 1.1rem;
+  color: #718096;
+}
+
+.lk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  margin-bottom: 28px;
+}
+
+.lk-table-wrap {
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+}
+
+/* Перебиваем глобальные стили table/th/td из global.css */
+.lk-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+.lk-table th,
+.lk-table td {
+  border: none;
+  padding: 14px 8px;
+  text-align: center;
+  white-space: nowrap;
+  color: #1A202C;
+}
+
+/* Заголовки уровней переносятся в две строки, чтобы таблица влезала без прокрутки */
+.lk-table th {
+  white-space: normal;
+  line-height: 1.3;
+  background: #F7FAFC;
+  color: #718096;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.lk-table th:first-child,
+.lk-table td:first-child {
+  text-align: left;
+  padding-left: 24px;
+}
+
+.lk-table tbody tr {
+  background: #fff;
+  border-top: 1px solid #EDF2F7;
+}
+
+.lk-table-strong {
+  font-weight: 700;
+}
+
+.lk-icon-btn {
+  display: inline-flex;
+  padding: 6px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: #A0AEC0;
+  cursor: pointer;
+}
+
+.lk-icon-btn:hover {
+  background: #FED7D7;
+  color: #E53E3E;
+}
+
+.lk-student {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 500;
+}
+
+.lk-student-avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #E6EAFD;
+  color: #4864EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Модальное окно */
+.lk-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(26, 32, 44, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.lk-modal {
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  text-align: left;
+}
+
+.lk-modal h3 {
+  font-size: 1.3rem;
+  color: #1A202C;
+  margin: 0 0 20px;
+}
+
+.lk-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .lk-page {
+    padding: 24px 0 40px;
+  }
+
+  .lk-title {
+    font-size: 1.6rem;
+  }
+
+  .lk-profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lk-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .lk-grade {
+    grid-template-columns: 1fr auto;
+    gap: 8px 12px;
+    padding: 12px 16px;
+  }
+
+  .lk-grade .lk-bar {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+
+  .lk-actions .lk-btn {
+    width: 100%;
+  }
+}
+
+/* Подтверждение почты и заявки на статус */
+.lk-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-bottom: 28px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.lk-notice-warning {
+  background: #FFF6E0;
+  border: 1px solid #F6D58E;
+  color: #744210;
+}
+
+.lk-notice-note {
+  font-weight: 600;
+}
+
+.lk-role-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lk-role-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.lk-role-status .lk-message,
+.lk-role-status .lk-hint {
+  margin: 0;
+}
+
+.lk-join-card {
+  margin: 16px 0 24px;
+}

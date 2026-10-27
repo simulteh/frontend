@@ -21,30 +21,35 @@ const CourseComments = () => {
   };
 
   return (
-    <div className="comments-section container">
-      <h2>Комментарии</h2>
+    <section className="cd-card cc-section">
+      <h2>
+        Комментарии <span className="cc-count">{comments.length}</span>
+      </h2>
 
-      <div className="comments-list">
+      <ul className="cc-list">
         {comments.map((c) => (
-          <div key={c.id} className="comment-card">
-            <p className="comment-author">{c.name}</p>
-            <p className="comment-text">{c.text}</p>
-          </div>
+          <li key={c.id} className="cc-item">
+            <span className="cc-avatar">{c.name[0]}</span>
+            <div>
+              <p className="cc-author">{c.name}</p>
+              <p className="cc-text">{c.text}</p>
+            </div>
+          </li>
         ))}
-      </div>
+      </ul>
 
-      <form className="comment-form" onSubmit={handleSubmit}>
+      <form className="cc-form" onSubmit={handleSubmit}>
         <textarea
           placeholder="Напишите комментарий..."
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
-          rows={4}
+          rows={3}
         />
-        <button type="submit" className="btn">
+        <button type="submit" className="cd-btn cd-btn-primary" disabled={!newComment.trim()}>
           Отправить
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

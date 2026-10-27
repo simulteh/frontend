@@ -3,6 +3,7 @@ import './Survey.css';
 
 const Survey = ({ questions = [], courseId }) => {
   const [answers, setAnswers] = useState({});
+  const [sent, setSent] = useState(false);
 
   // Загружаем сохранённые ответы из localStorage
   useEffect(() => {
@@ -13,23 +14,29 @@ const Survey = ({ questions = [], courseId }) => {
   const handleAnswer = (questionId, value) => {
     const newAnswers = { ...answers, [questionId]: value };
     setAnswers(newAnswers);
+    setSent(false);
     localStorage.setItem(`survey-${courseId}`, JSON.stringify(newAnswers));
   };
 
   const handleSubmit = () => {
-    alert('Спасибо за участие! Ваши ответы сохранены.');
+    setSent(true);
     console.log('Ответы пользователя:', answers);
   };
 
+  const allAnswered = questions.every((q) => answers[q.id]);
+
   return (
-    <div className="survey">
-      <h3>Опрос курса</h3>
+    <section className="cd-card sv-section">
+      <h2>Опрос курса</h2>
       {questions.map((q) => (
-        <div key={q.id} className="survey-question">
-          <p className="question-text">{q.text}</p>
-          <div className="survey-options">
+        <fieldset key={q.id} className="sv-question">
+          <legend>{q.text}</legend>
+          <div className="sv-options">
             {q.options.map((opt, index) => (
-              <label key={index} className="survey-option">
+              <label
+                key={index}
+                className={`sv-option ${answers[q.id] === opt ? 'sv-option-checked' : ''}`}
+              >
                 <input
                   type="radio"
                   name={`q-${q.id}`}
@@ -41,14 +48,17 @@ const Survey = ({ questions = [], courseId }) => {
               </label>
             ))}
           </div>
-        </div>
+        </fieldset>
       ))}
       {questions.length > 0 && (
-        <button className="survey-submit" onClick={handleSubmit}>
-          Отправить
-        </button>
+        <div className="sv-footer">
+          <button className="cd-btn cd-btn-primary" onClick={handleSubmit} disabled={!allAnswered}>
+            Отправить
+          </button>
+          {sent && <span className="sv-thanks">Спасибо за участие! Ваши ответы сохранены.</span>}
+        </div>
       )}
-    </div>
+    </section>
   );
 };
 
