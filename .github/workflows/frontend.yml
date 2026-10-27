@@ -1,0 +1,121 @@
+name: Frontend build and deploy
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Check deployment script
+        run: python3 -B -m unittest discover -s deploy/tests -p 'test_*.py' -v
+      - name: Install dependencies from lockfile
+        run: npm ci --no-audit --no-fund
+      - name: Build frontend
+        # CRA reports the existing project's lint warnings without treating them
+        # as compilation errors. Compilation errors still fail this step.
+        env:
+          CI: 'false'
+          PUBLIC_URL: '/'
+        run: npm run build
+      - name: Package verified build
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s build/index.html
+          test -s build/asset-manifest.json
+          printf '%s\n' "$GITHUB_SHA" > build/deploy-version.txt
+          tar -czf "$RUNNER_TEMP/frontend-build.tar.gz" -C build .
+      - name: Save build for deployment
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: frontend-build-${{ github.sha }}
+          path: ${{ runner.temp }}/frontend-build.tar.gz
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 1
+
+  deploy:
+    name: Deploy to VM
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DEPLOY_HOST: ${{ vars.DEPLOY_HOST || '212.67.12.82' }}
+      DEPLOY_USER: ${{ vars.DEPLOY_USER || 'root' }}
+      DEPLOY_PORT: ${{ vars.DEPLOY_PORT || '22' }}
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: frontend-build-${{ github.sha }}
+          path: ${{ runner.temp }}/frontend-artifact
+      - name: Prepare deployment SSH credentials
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_SSH_KEY" || { echo 'Missing secret DEPLOY_SSH_KEY'; exit 1; }
+          test -n "$DEPLOY_KNOWN_HOSTS" || { echo 'Missing secret DEPLOY_KNOWN_HOSTS'; exit 1; }
+          [[ "$DEPLOY_HOST" =~ ^[a-zA-Z0-9][a-zA-Z0-9.-]*$ ]] || exit 1
+          [[ "$DEPLOY_USER" =~ ^[a-z_][a-z0-9_-]*$ ]] || exit 1
+          [[ "$DEPLOY_PORT" =~ ^[0-9]{1,5}$ ]] || exit 1
+          port=$((10#$DEPLOY_PORT))
+          ((port >= 1 && port <= 65535)) || exit 1
+          ssh_dir="$RUNNER_TEMP/simulteh-frontend-ssh"
+          umask 077
+          mkdir -p "$ssh_dir"
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$ssh_dir/id_ed25519"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$ssh_dir/known_hosts"
+          ssh-keygen -y -P '' -f "$ssh_dir/id_ed25519" > /dev/null
+          lookup_host="$DEPLOY_HOST"
+          if ((port != 22)); then lookup_host="[$DEPLOY_HOST]:$port"; fi
+          ssh-keygen -F "$lookup_host" -f "$ssh_dir/known_hosts" > /dev/null
+      - name: Publish frontend on VM
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_SHA" =~ ^[0-9a-f]{40}$ ]] || exit 1
+          ssh_dir="$RUNNER_TEMP/simulteh-frontend-ssh"
+          test -s "$RUNNER_TEMP/frontend-artifact/frontend-build.tar.gz"
+          ssh -F /dev/null -T \
+            -i "$ssh_dir/id_ed25519" -p "$DEPLOY_PORT" \
+            -o BatchMode=yes -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$ssh_dir/known_hosts" \
+            -o GlobalKnownHostsFile=/dev/null \
+            -o ConnectTimeout=15 -o ConnectionAttempts=1 \
+            -o ServerAliveInterval=15 -o ServerAliveCountMax=3 \
+            "$DEPLOY_USER@$DEPLOY_HOST" "deploy $GITHUB_SHA" \
+            < "$RUNNER_TEMP/frontend-artifact/frontend-build.tar.gz"
+      - name: Remove temporary SSH credentials
+        if: always()
+        shell: bash
+        run: |
+          ssh_dir="$RUNNER_TEMP/simulteh-frontend-ssh"
+          rm -f "$ssh_dir/id_ed25519" "$ssh_dir/known_hosts"
+          rmdir "$ssh_dir" 2>/dev/null || true
