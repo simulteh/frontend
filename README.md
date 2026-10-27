@@ -1,5 +1,12 @@
 # Getting Started with Create React App
 
+## Автоматическая публикация
+
+Настройка и работа деплоя описаны в [deploy/GITHUB_ACTIONS.md](deploy/GITHUB_ACTIONS.md).
+Pull request в `main` проверяет сборку; push в `main` после успешной сборки
+публикует фронтенд на существующую ВМ. Для локальной сборки используйте
+Node.js 24 (`.nvmrc`) и `npm ci`.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
