@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { ReactComponent as LogoSvg } from '../assets/images/logosim.svg';
-import { getProfile, isTeacher, logout } from '../services/api';
+import { getProfile, isTeacher, isAdmin, logout } from '../services/api';
 import { isAuthenticated, onSessionChange } from '../services/session';
 import { UserFilledIcon } from './CabinetIcons';
 import '../style/Header.css';
@@ -128,9 +128,9 @@ export const Header = () => {
                   )}
                   <Link to="/profile">Личный кабинет</Link>
                   {profile && (
-                    isTeacher(profile)
-                      ? <Link to="/groups">Мои группы</Link>
-                      : <Link to="/grades">Мои оценки</Link>
+                    isAdmin(profile) ? <Link to="/admin">Админ-панель</Link>
+                      : isTeacher(profile) ? <Link to="/groups">Мои группы</Link>
+                        : <Link to="/grades">Мои оценки</Link>
                   )}
                   <button type="button" className="hdr-menu-logout" onClick={handleLogout}>
                     Выйти

@@ -18,7 +18,7 @@ import HomePage from './pages/HomePage';
 import OldHomePage from './pages/OldHomePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import LabWorksPage from './pages/LabWorksPage';
-import SupportAdminPage from './components/SupportAdminPage';
+import AdminPage from './pages/AdminPage';
 import { Comments } from './components/Comments';
 import NotFoundPage from './pages/NotFoundPage';
 import { Preloader } from './components/Preloader';
@@ -89,7 +89,7 @@ function App() {
         <Route path="/grades" element={<ProtectedRoute><GradesPage /></ProtectedRoute>} />
         <Route path="/partner" element={<PartnerPage />} />
         <Route path="/lab-works" element={<LabWorksPage />} />
-        <Route path="/admin" element={<SupportAdminPage />} />
+        <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
         <Route path="/courses" element={<CoursesPage courses={courses} />} />
         <Route path="/courses/:id" element={<CourseDetailPage courses={courses} />} />
         <Route path="/game" element={<Game />} />

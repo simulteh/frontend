@@ -1,0 +1,287 @@
+/* Админ-панель. Кнопки, таблицы и окна — из Cabinet.css (lk-*) */
+
+/* Вкладки */
+.ad-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin: 4px 0 28px;
+  border-bottom: 2px solid #E2E8F0;
+}
+
+.ad-tab {
+  margin-bottom: -2px;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #718096;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.ad-tab:hover {
+  color: #1A202C;
+}
+
+.ad-tab.is-active {
+  color: #4864EC;
+  border-bottom-color: #4864EC;
+}
+
+/* Панель над таблицей */
+.ad-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ad-toolbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Переключатель фильтра */
+.ad-segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 3px;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ad-segmented button {
+  padding: 6px 14px;
+  background: none;
+  border: none;
+  border-radius: 7px;
+  color: #4A5568;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ad-segmented button:hover {
+  color: #1A202C;
+}
+
+.ad-segmented button.is-active {
+  background: #4864EC;
+  color: #fff;
+}
+
+/* Блоки внутри вкладки */
+.ad-block {
+  margin-bottom: 40px;
+}
+
+.ad-block-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ad-block-head h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #1A202C;
+}
+
+.ad-count {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: #E6EAFD;
+  color: #4864EC;
+  font-size: 0.85rem;
+  vertical-align: middle;
+}
+
+.ad-search,
+.ad-select,
+.ad-textarea {
+  width: 100%;
+  padding: 11px 16px;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background: #fff;
+  color: #1A202C;
+  font: inherit;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.ad-search {
+  margin-bottom: 16px;
+}
+
+.ad-search:focus,
+.ad-select:focus,
+.ad-textarea:focus {
+  border-color: #4864EC;
+}
+
+.ad-textarea {
+  resize: vertical;
+}
+
+/* Таблицы админки: текст слева, длинные значения переносятся */
+.ad-table th,
+.ad-table td {
+  text-align: left;
+  padding: 12px 14px;
+}
+
+.ad-table th:first-child,
+.ad-table td:first-child {
+  padding-left: 18px;
+}
+
+.ad-cell-wrap {
+  white-space: normal !important;
+  min-width: 120px;
+}
+
+.ad-details {
+  min-width: 220px;
+  color: #4A5568;
+}
+
+.ad-comment {
+  margin-top: 4px;
+  color: #718096;
+  font-size: 0.85rem;
+}
+
+.ad-row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* Статусы */
+.ad-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ad-status-pending {
+  background: #FFF6E0;
+  color: #975A16;
+}
+
+.ad-status-approved {
+  background: #EAFFEA;
+  color: #276749;
+}
+
+.ad-status-rejected {
+  background: #FFF5F5;
+  color: #C53030;
+}
+
+.ad-status-free {
+  background: #EDF2F7;
+  color: #4A5568;
+}
+
+.ad-btn-danger {
+  background: #fff;
+  border-color: #FEB2B2;
+  color: #C53030;
+}
+
+.ad-btn-danger:hover:not(:disabled) {
+  background: #FFF5F5;
+  border-color: #E53E3E;
+}
+
+.ad-icon-edit:hover {
+  background: rgba(72, 100, 236, 0.08);
+  color: #4864EC;
+}
+
+/* Лицензии */
+.ad-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ad-stat {
+  min-width: 150px;
+  padding: 14px 18px;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.ad-stat span {
+  display: block;
+  color: #718096;
+  font-size: 0.85rem;
+}
+
+.ad-stat strong {
+  font-size: 1.6rem;
+  color: #1A202C;
+}
+
+.ad-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ad-key code {
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #1A202C;
+}
+
+.ad-issued {
+  max-width: 520px;
+}
+
+.ad-keys {
+  max-height: 280px;
+  margin: 12px 0 20px;
+  padding: 14px 16px;
+  overflow: auto;
+  border-radius: 10px;
+  background: #F7FAFC;
+  border: 1px solid #E2E8F0;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #1A202C;
+}
+
+@media (max-width: 768px) {
+  .ad-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ad-segmented {
+    justify-content: space-between;
+  }
+}

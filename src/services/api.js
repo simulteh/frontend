@@ -1,12 +1,10 @@
 import axios from 'axios';
-import { createMockApi } from './mockApi';
 import {
   getSession,
   getSessionVersion,
   setSession,
   replaceTokens,
-  clearSession,
-  isAuthenticated
+  clearSession
 } from './session';
 
 // На сайте API доступен по /api. При локальной разработке (npm start) запросы идут
@@ -20,11 +18,6 @@ export const publicApi = axios.create({ baseURL: API_URL, timeout: 20000 });
 
 // Запросы с авторизацией: access-токен в заголовке и автоматическое обновление сессии
 export const api = axios.create({ baseURL: API_URL, timeout: 20000 });
-
-// Демо-режим без бэкенда: REACT_APP_MOCK=teacher | student | user в .env.development.local
-const MOCK_ROLE = process.env.REACT_APP_MOCK;
-const mock = MOCK_ROLE ? createMockApi(MOCK_ROLE) : null;
-if (mock && !isAuthenticated()) setSession({ accessToken: 'demo', refreshToken: 'demo' });
 
 // ===== Обновление токенов =====
 
@@ -128,7 +121,7 @@ export const register = async ({ firstName, lastName, middleName, email, passwor
 export const logout = async () => {
   const refreshToken = getSession()?.refreshToken;
   clearSession();
-  if (mock || !refreshToken) return;
+  if (!refreshToken) return;
   try {
     await publicApi.post('/auth/logout', { refreshToken });
   } catch (err) {
@@ -148,16 +141,15 @@ export const ROLE_LABELS = {
 // { id, email, nickname, firstName, lastName, middleName, role, emailConfirmed }.
 // role: USER — новый пользователь, STUDENT и TEACHER выдаются после одобрения заявки
 export const getProfile = async () => {
-  if (mock) return mock.getProfile();
   const { data } = await api.get('/users/me');
   return data;
 };
 
 export const isTeacher = (profile) => profile?.role === 'TEACHER';
+export const isAdmin = (profile) => profile?.role === 'ADMIN';
 
 // Повторное письмо подтверждения почты. Ответ одинаковый для любого адреса
 export const resendConfirmation = async (email) => {
-  if (mock) return { message: 'Письмо отправлено' };
   const { data } = await publicApi.post('/auth/resend-confirmation', { email });
   return data;
 };
@@ -166,14 +158,12 @@ export const resendConfirmation = async (email) => {
 
 // Свои заявки, новые сверху: [{ id, requestType, status, comment, createdAt, reviewedAt }]
 export const getVerificationStatus = async () => {
-  if (mock) return mock.getVerificationStatus();
   const { data } = await api.get('/verification/status');
   return data;
 };
 
 // Обязательно только fullName; пустые поля не отправляем
 export const requestStudentStatus = async (fields) => {
-  if (mock) return mock.requestStudentStatus();
   const body = Object.fromEntries(
     Object.entries(fields).filter(([, value]) => value !== '' && value != null)
   );
@@ -184,7 +174,6 @@ export const requestStudentStatus = async (fields) => {
 // Заявка с документом (pdf, jpg, png, doc до 5 МБ) уходит на почту.
 // Content-Type не задаём: boundary для multipart выставит браузер
 export const requestTeacherStatus = async ({ fullName, organization, file }) => {
-  if (mock) return mock.requestTeacherStatus();
   const form = new FormData();
   form.append('fullName', fullName);
   form.append('organization', organization);
@@ -197,13 +186,11 @@ export const requestTeacherStatus = async ({ fullName, organization, file }) => 
 
 // [{ id, name, organization, studentsCount }]
 export const getGroups = async () => {
-  if (mock) return mock.getGroups();
   const { data } = await api.get('/groups');
   return data;
 };
 
 export const createGroup = async (name, organization) => {
-  if (mock) return mock.createGroup(name, organization);
   const { data } = await api.post('/groups', { name, organization });
   return data;
 };
@@ -211,26 +198,22 @@ export const createGroup = async (name, organization) => {
 // { id, name, organization, inviteCode,
 //   students: [{ id, lastName, firstName, scores: [обучение, ур.1, ..., ур.10] }] }
 export const getGroup = async (id) => {
-  if (mock) return mock.getGroup(id);
   const { data } = await api.get(`/groups/${id}`);
   return data;
 };
 
 export const updateGroup = async (id, name, organization) => {
-  if (mock) return mock.updateGroup(id, name, organization);
   const { data } = await api.put(`/groups/${id}`, { name, organization });
   return data;
 };
 
 // studentId — публичный ID пользователя из его личного кабинета
 export const addStudentToGroup = async (groupId, studentId) => {
-  if (mock) return mock.addStudentToGroup(groupId, studentId);
   const { data } = await api.post(`/groups/${groupId}/students`, { studentId: Number(studentId) });
   return data;
 };
 
 export const removeStudentFromGroup = async (groupId, studentId) => {
-  if (mock) return mock.removeStudentFromGroup(groupId, studentId);
   const { data } = await api.delete(`/groups/${groupId}/students/${studentId}`);
   return data;
 };
@@ -239,14 +222,12 @@ export const removeStudentFromGroup = async (groupId, studentId) => {
 
 // [{ id, name, organization, teacher: { lastName, firstName, middleName } }]
 export const getMyGroups = async () => {
-  if (mock) return mock.getMyGroups();
   const { data } = await api.get('/groups/my');
   return data;
 };
 
 // Вступление по коду из ссылки-приглашения; ответ — группа с преподавателем
 export const joinGroup = async (inviteCode) => {
-  if (mock) return mock.joinGroup(inviteCode);
   const { data } = await api.post(`/groups/join/${encodeURIComponent(inviteCode)}`);
   return data;
 };
@@ -255,7 +236,6 @@ export const joinGroup = async (inviteCode) => {
 
 // Ровно 11 значений: [обучение, ур.1, ..., ур.10]; null — нет результата, 0 — пройдено на 0
 export const getMyScores = async () => {
-  if (mock) return mock.getMyScores();
   const { data } = await api.get('/profile/scores');
   return data;
 };
@@ -263,7 +243,86 @@ export const getMyScores = async () => {
 // Результат уровня из игры: level и score — целые от 0 до 10.
 // Сервер хранит лучший балл и возвращает актуальный массив оценок
 export const saveLevelResult = async (level, score) => {
-  if (mock) return mock.saveLevelResult(level, score);
   const { data } = await api.post('/profile/scores', { level, score });
+  return data;
+};
+
+// ===== Админ-панель (роль ADMIN) =====
+
+// Заявки на статус студента и преподавателя.
+// [{ id, userId, requestType, status, comment, createdAt, reviewedAt, reviewedBy }]
+export const adminGetVerifications = async (status) => {
+  const { data } = await api.get('/admin/verifications', { params: { status: status || undefined } });
+  return data;
+};
+
+// id — номер заявки, а не ID пользователя
+export const adminApproveVerification = async (id) => {
+  const { data } = await api.post(`/admin/verifications/${id}/approve`);
+  return data;
+};
+
+export const adminRejectVerification = async (id, comment) => {
+  const { data } = await api.post(`/admin/verifications/${id}/reject`, { comment: comment || undefined });
+  return data;
+};
+
+// Заявки преподавателей на добавление вуза.
+// [{ id, teacherId, universityName, faculty, speciality, direction, status, createdAt }]
+export const adminGetUniversityRequests = async (status) => {
+  const { data } = await api.get('/admin/university-requests', { params: { status: status || undefined } });
+  return data;
+};
+
+// Одобрение создаёт вуз
+export const adminApproveUniversityRequest = async (id) => {
+  const { data } = await api.post(`/admin/university-requests/${id}/approve`);
+  return data;
+};
+
+export const adminRejectUniversityRequest = async (id) => {
+  const { data } = await api.post(`/admin/university-requests/${id}/reject`);
+  return data;
+};
+
+// Публичный справочник вузов: [{ id, name, faculty, speciality, direction }]
+export const getUniversities = async () => {
+  const { data } = await publicApi.get('/universities');
+  return data;
+};
+
+// name обязательно; faculty, speciality, direction — по желанию
+export const adminCreateUniversity = async (fields) => {
+  const { data } = await api.post('/admin/universities', fields);
+  return data;
+};
+
+export const adminUpdateUniversity = async (id, fields) => {
+  const { data } = await api.put(`/admin/universities/${id}`, fields);
+  return data;
+};
+
+export const adminDeleteUniversity = async (id) => {
+  await api.delete(`/admin/universities/${id}`);
+};
+
+// Лицензии: [{ id, licenseKey, ownerUserId, activatedAt, expiresAt, active, batchId }]
+export const adminGetLicenses = async () => {
+  const { data } = await api.get('/admin/licenses');
+  return data;
+};
+
+// Одна лицензия: { id, licenseKey }. universityId можно не указывать
+export const adminCreateLicense = async (universityId) => {
+  const { data } = await api.post('/admin/licenses/create', { universityId: universityId || undefined });
+  return data;
+};
+
+// Партия лицензий: { batchId, quantity, keys }
+export const adminCreateLicenseBatch = async (universityId, quantity) => {
+  const { data } = await api.post('/admin/licenses/batch', {
+    universityId: universityId || undefined,
+    quantity
+  });
   return data;
 };
